@@ -12,7 +12,7 @@
 // GAME FUNCTIONALITY
 
 // Need a function to reset the game
-// Need to create way to bet 
+// Need to create way to bet and track money
 // Need to track how much money player has and end game when the player is out of money (How much money will the player start with)
 
 
