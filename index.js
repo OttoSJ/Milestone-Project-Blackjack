@@ -22,3 +22,10 @@
 // Need to find images of cards to display
 // Need to decide on layout
 // Need to get background color
+
+// Array of suits
+const suits = ["spades", "diamonds", "clubs", "hearts"]
+
+// Array of card values
+const cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+// Function to create deck of cards
