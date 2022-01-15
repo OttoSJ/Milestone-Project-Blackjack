@@ -2,3 +2,49 @@
 /* <i class="fas fa-heart"></i> */
 /* <i class="fas fa-diamond"></i> */
 /* <i class="fas fa-spade"></i> */
+
+* {
+    /* border: 1px solid black; */
+
+}
+body {
+    background-color: rgb(42, 72, 42);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(225, 222, 222);
+    width: 6rem;
+    height: 9rem;
+    border: 3px solid black;
+    border-radius: 5%;
+}
+
+.suit {
+    width: 4rem;
+    height: 4rem;
+    /* color: red; */
+}
+
+.suit-container {
+    height: 75%;
+}
+
+.card-value-container {
+    height: 15%;
+    width: 100%;
+    /* display: flex; */
+    /* flex-direction: row ; */
+    /* justify-content: flex-start; */
+    /* border: 1px solid black; */
+    margin-left: 20px;
+}
+
+.card-value {
+    font-size: 130%;
+    display: flex;
+    height: 10%;
+    width: 90%;
+}
