@@ -75,27 +75,32 @@ let dealer
 console.log(shuffledDeck)
 
 
-let number = document.querySelector(".card-value")
-number.textContent = 7
-        
-        
-        
 
-document.querySelector(".deal-card").addEventListener("click", (event) => {
+        
+function dealerCard() {
+    let newCard = shuffledDeck.shift()
+    let dealerCard = document.querySelector(".dealer-card-value")
+    dealerCard.textContent = `${newCard.Value}`
+    let newCardImage = document.querySelector(".dealer-suit")
+    newCardImage.src = `images/${newCard.Suit}-solid.svg`
+    console.log("clicked")
+}       
+
+function handleDealer(event) {
+    // let deal = document.querySelector(".deal-card")
     event.preventDefault()
     let newCard = shuffledDeck.shift()
     console.log(newCard.Suit)
-    let newCardValue = document.querySelector(".card-value")
+    let newCardValue = document.querySelector(".player-card-value")
     newCardValue.textContent = `${newCard.Value}` 
-    let newCardImage = document.querySelector(".suit")
+    let newCardImage = document.querySelector(".player-suit")
     newCardImage.src = `images/${newCard.Suit}-solid.svg`
-    console.log("clicked")
-})
+   dealerCard()
+    
+}
 
 // THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
-// Pull card card from array
-// Change image on card
-// Change value on card
+// Place each card into players array to track total value and also for placement of each card so player can see their hand
 // Compare player total card value to dealer total card card value
 
 

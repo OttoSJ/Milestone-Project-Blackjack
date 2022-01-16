@@ -10,12 +10,27 @@
 body {
     background-color: rgb(42, 72, 42);
 }
-.cards-container {
-    height: 90vh;
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-cards-container, .dealer-card-container {
+    height: 45vh;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+    border: 1px solid grey;
+}
+
+.dealer-card-container {
+    align-items: flex-start;
+    margin-top: 30px;
 }
 
 .card {
@@ -30,13 +45,13 @@ body {
     border-radius: 5%;
 }
 
-.suit {
+.player-suit, .dealer-suit {
     width: 4rem;
     height: 4rem;
     /* color: red; */
 }
 
-.suit-container {
+.player-suit-container, .dealer-suit-container {
     height: 75%;
 }
 
@@ -50,9 +65,16 @@ body {
     margin-left: 20px;
 }
 
-.card-value {
+.player-card-value {
     font-size: 130%;
     display: flex;
     height: 10%;
     width: 90%;
+}
+
+button {
+    position:absolute;
+    display: flex;
+    bottom: 5rem;
+    left: 2rem;
 }
