@@ -29,11 +29,13 @@ body {
 }
 
 .dealer-card-container {
+    justify-content: flex-start;
     align-items: flex-start;
     margin-top: 30px;
 }
 
-.card {
+
+.card  {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -41,8 +43,18 @@ body {
     background-color: rgb(225, 222, 222);
     width: 6rem;
     height: 9rem;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     border-radius: 5%;
+}
+
+.deck {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 10%;
+    width: 6rem;
+    height: 9rem;
 }
 
 .player-suit, .dealer-suit {
@@ -72,7 +84,7 @@ body {
     width: 90%;
 }
 
-button {
+.deal-card {
     position:absolute;
     display: flex;
     bottom: 5rem;

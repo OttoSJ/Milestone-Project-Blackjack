@@ -9,31 +9,19 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <button onclick="handleReset()" class="reset-game">Reset</button>
     <div class="main-container">
       <div class="dealer-card-container">
-        <div class="card">
-          <div class="card-value-container">
-            <p class="dealer-card-value">3</p>
-          </div>
-          <div class="dealer-suit-container">
-            <img class="dealer-suit" src="images/Hearts-solid.svg" alt="" />
-          </div>
+        <div>
+          <img class="deck" src="images/cardback.jpeg" alt="" />
         </div>
       </div>
-      <div class="player-cards-container">
-        <!-- <div class="card">
-          <div class="card-value-container">
-            <p class="player-card-value">3</p>
-          </div>
-          <div class="player-suit-container">
-            <img class="player-suit" src="images/Clubs-solid.svg" alt="" />
-          </div>
-        </div> -->
-      </div>
+      <div class="player-cards-container"></div>
     </div>
     <button onclick="handleDealer(event)" class="deal-card">Deal</button>
 
     <!-- <script src="buildfunctions.js"></script> -->
     <script src="index.js"></script>
+    <!-- <script src="index.js" type="module"></script> -->
   </body>
 </html>

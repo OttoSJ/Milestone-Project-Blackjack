@@ -1,3 +1,5 @@
+// import { createDealerCard  } from "./buildfunctions.js";
+
 // JAVASCRIPT
 
 // CARDS AND FUCTIONALITY
@@ -10,7 +12,7 @@
 
 // GAME FUNCTIONALITY
 
-// Need a function to reset the game
+
 // Need to create way to bet and track money
 // Need to track how much money player has and end game when the player is out of money (How much money will the player start with)
 
@@ -72,75 +74,110 @@ let dealer
 console.log(shuffledDeck)
 
 
-// Function for dealer to reicve card
-function dealerCard() {
-    let newCard = shuffledDeck.shift()
-    let dealerCard = document.querySelector(".dealer-card-value")
-    dealerCard.textContent = `${newCard.Value}`
-    let newCardImage = document.querySelector(".dealer-suit")
-    newCardImage.src = `images/${newCard.Suit}-solid.svg`
-    console.log(newCard)
-    // Need to add conditional statement to check for dealers total hand value (16 tops!!)
-    let number = 11
-    let a = (number > 11) ? "A" : "B" 
 
-    // Need to add setTimeOut for slight delay
-    // Need to add message if dealer holds
-}       
+// Need to add setTimeOut for slight delay
+// Need to add message if dealer holds
+       
 
 // Function to deal player card from top of deck with dealer function inside
 let id = 0
 function handleDealer(event) {
-
+    // document.querySelector("deal-card")
     event.preventDefault()
-    let newCard = shuffledDeck.shift()
-    // console.log(newCard.Suit)
-    // let newCardValue = document.querySelector(".player-card-value")
-    // newCardValue.textContent = `${newCard.Value}`
-    // let newCardImage = document.querySelector(".player-suit")
-    // newCardImage.src = `images/${newCard.Suit}-solid.svg`
-    
-   
-    createCard(newCard)
-    dealerCard()
+    let newPlayerCard = shuffledDeck.shift()
+    let newDealerCard = shuffledDeck.shift()
+    createPlayerCard(newPlayerCard)
+    createDealerCard(newDealerCard)
 
     id++
     console.log(id)
 }
 
-function createCard(newCard) {
+function handleReset() { 
+    let el = document.getElementsByClassName("card")
+    if (el.length > 0) {
+        for (let i = 0; i < el.length; i++) {
+            el[i].remove()
+            handleReset()
+        }
+    }
+    
+    console.log(el.length)
+    console.log("reset clicked")
+}
+
+   
+
+function createPlayerCard(newCard) {
 
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
+
     let playerCardsContainer = document.querySelector(".player-cards-container")
-    playerCardsContainer.append(cardDiv)
+    
     let cardValueContainer = document.createElement("div")
     cardValueContainer.setAttribute("class", "card-value-container")
-    cardDiv.appendChild(cardValueContainer)
+    
     let playerCardValue = document.createElement("p")
     playerCardValue.setAttribute("class", "player-card-value")
     playerCardValue.textContent = `${newCard.Value}` 
-    cardValueContainer.append(playerCardValue)
+    
     let playerSuitContainer = document.createElement("div")
     playerSuitContainer.setAttribute("class","player-suit-container")
-    cardDiv.append(playerSuitContainer)
+    
     let image = document.createElement("img")
     image.setAttribute("class", "player-suit")
     image.src = `images/${newCard.Suit}-solid.svg`
+    
+    playerCardsContainer.append(cardDiv)
+    cardDiv.append(cardValueContainer)
+    cardValueContainer.append(playerCardValue)
+    cardDiv.append(playerSuitContainer)
     playerSuitContainer.append(image)
-
 }
+
+    
+function createDealerCard(newCard) {
+
+    let cardDiv = document.createElement("div")
+    cardDiv.setAttribute("class", "card")
+      
+    let dealerCardsContainer = document.querySelector(".dealer-card-container")
+    
+    let cardValueContainer = document.createElement("div")
+    cardValueContainer.setAttribute("class", "card-value-container")
+    
+    let dealerCardValue = document.createElement("p")
+    dealerCardValue.setAttribute("class", "dealer-cards-value")
+    dealerCardValue.textContent = `${newCard.Value}` 
+    
+    let dealerSuitContainer = document.createElement("div")
+    dealerSuitContainer.setAttribute("class","dealer-suit-container")
+    
+    let image = document.createElement("img")
+    image.setAttribute("class", "dealer-suit")
+    image.src = `images/${newCard.Suit}-solid.svg`
+    
+    dealerCardsContainer.append(cardDiv)
+    cardDiv.append(cardValueContainer)
+    cardValueContainer.append(dealerCardValue)
+    cardDiv.append(dealerSuitContainer)
+    dealerSuitContainer.append(image)
+}  
+
+    
+    
+
+
+
+
+
+
+
 
 // THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
 // Place each card into players array to track total value and also for placement of each card so player can see their hand
 // Compare player total card value to dealer total card card value
-
-
-
-
-
-
-
 
 // THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUIT. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY. 
 
