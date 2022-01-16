@@ -2,12 +2,11 @@
 
 // CARDS AND FUCTIONALITY
 
-// Need a function to create a deck of cards DONE****
-// Need a function to shuffle deck of cards   DONE***
-// Need a function to render cards
+
+
 // Need way to keep track of dealers card total 
 // Need a way to keep track of players card total
-// Need a function to compare the value of dealers cards to players cards
+// Need to compare the value of dealers cards to players cards
 
 // GAME FUNCTIONALITY
 
@@ -20,10 +19,9 @@
 
 
 // CSS
-// Need to find images of cards to display
 // Need to decide on layout
-// Need to get background color
-// Need to an array of card images and match the cards being delt with the card suit and value (make variable such that images === suit and number === value)??
+
+
 
 // Array of suits
 const suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
@@ -75,29 +73,59 @@ let dealer
 console.log(shuffledDeck)
 
 
-
-        
+// Function for dealer to reicve card
 function dealerCard() {
     let newCard = shuffledDeck.shift()
     let dealerCard = document.querySelector(".dealer-card-value")
     dealerCard.textContent = `${newCard.Value}`
     let newCardImage = document.querySelector(".dealer-suit")
     newCardImage.src = `images/${newCard.Suit}-solid.svg`
-    console.log("clicked")
+    console.log(newCard)
+    // Need to add conditional statement to check for dealers total hand value (16 tops!!)
+    let number = 11
+    let a = (number > 11) ? "A" : "B" 
+
+    // Need to add setTimeOut for slight delay
+    // Need to add message if dealer holds
 }       
 
+// Function to deal player card from top of deck with dealer function inside
+let id = 0
 function handleDealer(event) {
-    // let deal = document.querySelector(".deal-card")
+
     event.preventDefault()
     let newCard = shuffledDeck.shift()
-    console.log(newCard.Suit)
-    let newCardValue = document.querySelector(".player-card-value")
-    newCardValue.textContent = `${newCard.Value}` 
-    let newCardImage = document.querySelector(".player-suit")
-    newCardImage.src = `images/${newCard.Suit}-solid.svg`
-   dealerCard()
+    // console.log(newCard.Suit)
+    // let newCardValue = document.querySelector(".player-card-value")
+    // newCardValue.textContent = `${newCard.Value}`
+    // let newCardImage = document.querySelector(".player-suit")
+    // newCardImage.src = `images/${newCard.Suit}-solid.svg`
     
+    let cardDiv = document.createElement("div")
+    cardDiv.setAttribute("class", "card")
+    let playerCardsContainer = document.querySelector(".player-cards-container")
+    playerCardsContainer.append(cardDiv)
+    let cardValueContainer = document.createElement("div")
+    cardValueContainer.setAttribute("class", "card-value-container")
+    cardDiv.appendChild(cardValueContainer)
+    let playerCardValue = document.createElement("p")
+    playerCardValue.setAttribute("class", "player-card-value")
+    playerCardValue.textContent = `${newCard.Value}` 
+    cardValueContainer.append(playerCardValue)
+    let playerSuitContainer = document.createElement("div")
+    playerSuitContainer.setAttribute("class","player-suit-container")
+    cardDiv.append(playerSuitContainer)
+    let image = document.createElement("img")
+    image.setAttribute("class", "player-suit")
+    image.src = `images/${newCard.Suit}-solid.svg`
+    playerSuitContainer.append(image)
+
+    dealerCard()
+
+    id++
+    console.log(id)
 }
+
 
 // THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
 // Place each card into players array to track total value and also for placement of each card so player can see their hand
