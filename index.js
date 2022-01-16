@@ -14,6 +14,7 @@
 // Need a function to reset the game
 // Need to create way to bet and track money
 // Need to track how much money player has and end game when the player is out of money (How much money will the player start with)
+// Need a function to deal cards (I can pop() from the array of cards to deal from the bottom or shift() to deal from the top)
 
 
 
@@ -22,7 +23,7 @@
 // Need to find images of cards to display
 // Need to decide on layout
 // Need to get background color
-// Need to an array of card images and match the cards being delt with the card suit and value??
+// Need to an array of card images and match the cards being delt with the card suit and value (make variable such that images === suit and number === value)??
 
 // Array of suits
 const suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
@@ -48,7 +49,7 @@ function getDeck()
 
     return deck;
 }
-console.log(getDeck(values))
+// console.log(getDeck(values))
 
 // Function to shuffle cards
 function shuffle(deck)
@@ -68,8 +69,11 @@ function shuffle(deck)
 }
 
 let deck = getDeck(values)
-console.log(shuffle(deck))
-     
+// console.log(shuffle(deck))
+let shuffledDeck = shuffle(deck)
+let dealer 
+console.log(shuffledDeck)
+
 
 let number = document.querySelector(".card-value")
 number.textContent = 7
@@ -77,9 +81,22 @@ number.textContent = 7
         
         
 
+document.querySelector(".deal-card").addEventListener("click", (event) => {
+    event.preventDefault()
+    let newCard = shuffledDeck.shift()
+    console.log(newCard.Suit)
+    let newCardValue = document.querySelector(".card-value")
+    newCardValue.textContent = `${newCard.Value}` 
+    let newCardImage = document.querySelector(".suit")
+    newCardImage.src = `images/${newCard.Suit}-solid.svg`
+    console.log("clicked")
+})
 
-
-
+// THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
+// Pull card card from array
+// Change image on card
+// Change value on card
+// Compare player total card value to dealer total card card value
 
 
 
