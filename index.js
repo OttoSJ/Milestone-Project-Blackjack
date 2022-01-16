@@ -13,7 +13,6 @@
 // Need a function to reset the game
 // Need to create way to bet and track money
 // Need to track how much money player has and end game when the player is out of money (How much money will the player start with)
-// Need a function to deal cards (I can pop() from the array of cards to deal from the bottom or shift() to deal from the top)
 
 
 
@@ -101,6 +100,16 @@ function handleDealer(event) {
     // let newCardImage = document.querySelector(".player-suit")
     // newCardImage.src = `images/${newCard.Suit}-solid.svg`
     
+   
+    createCard(newCard)
+    dealerCard()
+
+    id++
+    console.log(id)
+}
+
+function createCard(newCard) {
+
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
     let playerCardsContainer = document.querySelector(".player-cards-container")
@@ -120,12 +129,7 @@ function handleDealer(event) {
     image.src = `images/${newCard.Suit}-solid.svg`
     playerSuitContainer.append(image)
 
-    dealerCard()
-
-    id++
-    console.log(id)
 }
-
 
 // THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
 // Place each card into players array to track total value and also for placement of each card so player can see their hand
