@@ -40,39 +40,44 @@ function createPlayerCard(newCard) {
 }
 
 
-function createDealerCard(newCard) {
+// function createDealerCard(newCard) {
+//     // for (let i = 0; i < 2; i++) {
+//     // }
 
-    let cardDiv = document.createElement("div")
-    cardDiv.setAttribute("class", "card")
-      
-    let dealerCardsContainer = document.querySelector(".dealer-card-container")
+//     let cardDiv = document.createElement("div")
+//     cardDiv.setAttribute("class", "card")
+        
+//     let dealerCardsContainer = document.querySelector(".dealer-card-container")
     
-    let cardValueContainer = document.createElement("div")
-    cardValueContainer.setAttribute("class", "card-value-container")
+//     let cardValueContainer = document.createElement("div")
+//     cardValueContainer.setAttribute("class", "card-value-container")
     
-    let dealerCardValue = document.createElement("p")
-    dealerCardValue.setAttribute("class", "dealer-cards-value")
-    dealerCardValue.textContent = `${newCard.Value}` 
+//     let dealerCardValue = document.createElement("p")
+//     dealerCardValue.setAttribute("class", "dealer-cards-value")
+//     dealerCardValue.textContent = `${newCard.Value}` 
     
-    let dealerSuitContainer = document.createElement("div")
-    dealerSuitContainer.setAttribute("class","dealer-suit-container")
+//     let dealerSuitContainer = document.createElement("div")
+//     dealerSuitContainer.setAttribute("class","dealer-suit-container")
     
-    let image = document.createElement("img")
-    image.setAttribute("class", "dealer-suit")
-    image.src = `images/${newCard.Suit}-solid.svg`
+//     let image = document.createElement("img")
+//     image.setAttribute("class", "dealer-suit")
+//     image.src = `images/${newCard.Suit}-solid.svg`
     
-    dealerCardsContainer.append(cardDiv)
-    cardDiv.append(cardValueContainer)
-    cardValueContainer.append(dealerCardValue)
-    cardDiv.append(dealerSuitContainer)
-    dealerSuitContainer.append(image)
-}  
+//     dealerCardsContainer.append(cardDiv)
+//     cardDiv.append(cardValueContainer)
+//     cardValueContainer.append(dealerCardValue)
+//     cardDiv.append(dealerSuitContainer)
+//     dealerSuitContainer.append(image)
+// }  
 
   
 // export { createDealerCard, createPlayerCard, handleDealer}
 
+// Function checks the value of the card that was delt and assigns a value to face cards
 function getValue(element) {
-    if (element === "J" ) {
+    if (element === "A") {
+        return "A"
+    }else if (element === "J" ) {
        return 10
     } else if (element === "Q") {
         return 10

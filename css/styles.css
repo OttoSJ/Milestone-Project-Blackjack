@@ -18,7 +18,7 @@ body {
     align-items: center;
 }
 
-.player-cards-container, .dealer-card-container {
+.player-card-container, .dealer-card-container {
     height: 45vh;
     width: 80vw;
     display: flex;

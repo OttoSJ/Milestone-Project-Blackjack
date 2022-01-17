@@ -80,7 +80,8 @@ const playersHand = []
 const dealersHand = []
 function handleDealer(event) {
     event.preventDefault()
-    
+    let dealer = "dealer"
+    let player = "player"
     const deck = getDeck(values)
     const shuffledDeck = shuffle(deck)
 
@@ -90,44 +91,15 @@ function handleDealer(event) {
     let dealerCardValue = getValue(newDealerCard.Value)
     playersHand.push(playerCardValue)
     dealersHand.push(dealerCardValue)
-    createPlayerCard(newPlayerCard)
-    createDealerCard(newDealerCard)
+    createCard(newPlayerCard, player)
+    createCard(newDealerCard, dealer)
   
-    console.log(playersHand)
+    // console.log(playersHand)
     console.log(dealersHand)
 
 }
 
-// Function that resets the game
-function handleReset() { 
-    let el = document.getElementsByClassName("card")
-    if (el.length > 0) {
-        for (let i = 0; i < el.length; i++) {
-            el[i].remove()
-            handleReset()
-        }
-    }
-    
-    console.log(el.length)
-    console.log("reset clicked")
-}
-
-   
-
-function getValue(element) {
-    if (element === "J" ) {
-       return 10
-    } else if (element === "Q") {
-        return 10
-    } else if (element === "K") {
-        return 10
-    } else return Number(element)
-        
-}
-
-
 let numbers = [ 2, 3, 9, 7]
-
 let total = numbers.reduce((total, element) => total + element)
 let el
 function checkValue(total) {
@@ -136,8 +108,60 @@ function checkValue(total) {
     }else return el = 1 + total
     
 }
-
 console.log(checkValue(total))
+
+// Function that resets the game
+function handleReset() { 
+    let el = document.getElementsByClassName("card")
+    if (el.length > 0) {
+        for (let i = 0; i < el.length; i++) {
+            el[i].remove()
+            handleReset()
+            
+        }
+    }
+    playersHand.length = 0;
+    dealersHand.length = 0;
+    console.log(el.length)
+    console.log("reset clicked")
+}
+
+
+
+
+
+
+function createCard(newCard, contestant) {
+    for (let i = 0; i < 2; i++) {
+        
+        let cardDiv = document.createElement("div")
+        cardDiv.setAttribute("class", "card")
+        
+        let CardsContainer = document.querySelector(`.${contestant}-card-container`)
+        
+        let cardValueContainer = document.createElement("div")
+        cardValueContainer.setAttribute("class", "card-value-container")
+        
+        let CardValue = document.createElement("p")
+        CardValue.setAttribute("class", `${contestant}-cards-value`)
+        CardValue.textContent = `${newCard.Value}` 
+        
+        let SuitContainer = document.createElement("div")
+        SuitContainer.setAttribute("class",`${contestant}-suit-container`)
+        
+        let image = document.createElement("img")
+        image.setAttribute("class", `${contestant}-suit`)
+        image.src = `images/${newCard.Suit}-solid.svg`
+        
+        CardsContainer.append(cardDiv)
+        cardDiv.append(cardValueContainer)
+        cardValueContainer.append(CardValue)
+        cardDiv.append(SuitContainer)
+        SuitContainer.append(image)
+    }  
+}
+    
+
 
 
 
