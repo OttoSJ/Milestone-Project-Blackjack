@@ -74,11 +74,6 @@ function shuffle(deck)
 }
 
 
-
-
-
-
-
 // Function to deal player card from top of deck with dealer function inside
 
 const playersHand = []
@@ -99,6 +94,7 @@ function handleDealer(event) {
     createDealerCard(newDealerCard)
   
     console.log(playersHand)
+    console.log(dealersHand)
 
 }
 
@@ -118,63 +114,6 @@ function handleReset() {
 
    
 
-function createPlayerCard(newCard) {
-
-    let cardDiv = document.createElement("div")
-    cardDiv.setAttribute("class", "card")
-
-    let playerCardsContainer = document.querySelector(".player-cards-container")
-    
-    let cardValueContainer = document.createElement("div")
-    cardValueContainer.setAttribute("class", "card-value-container")
-    
-    let playerCardValue = document.createElement("p")
-    playerCardValue.setAttribute("class", "player-card-value")
-    playerCardValue.textContent = `${newCard.Value}` 
-    
-    let playerSuitContainer = document.createElement("div")
-    playerSuitContainer.setAttribute("class","player-suit-container")
-    
-    let image = document.createElement("img")
-    image.setAttribute("class", "player-suit")
-    image.src = `images/${newCard.Suit}-solid.svg`
-    
-    playerCardsContainer.append(cardDiv)
-    cardDiv.append(cardValueContainer)
-    cardValueContainer.append(playerCardValue)
-    cardDiv.append(playerSuitContainer)
-    playerSuitContainer.append(image)
-}
-
-    
-function createDealerCard(newCard) {
-
-    let cardDiv = document.createElement("div")
-    cardDiv.setAttribute("class", "card")
-      
-    let dealerCardsContainer = document.querySelector(".dealer-card-container")
-    
-    let cardValueContainer = document.createElement("div")
-    cardValueContainer.setAttribute("class", "card-value-container")
-    
-    let dealerCardValue = document.createElement("p")
-    dealerCardValue.setAttribute("class", "dealer-cards-value")
-    dealerCardValue.textContent = `${newCard.Value}` 
-    
-    let dealerSuitContainer = document.createElement("div")
-    dealerSuitContainer.setAttribute("class","dealer-suit-container")
-    
-    let image = document.createElement("img")
-    image.setAttribute("class", "dealer-suit")
-    image.src = `images/${newCard.Suit}-solid.svg`
-    
-    dealerCardsContainer.append(cardDiv)
-    cardDiv.append(cardValueContainer)
-    cardValueContainer.append(dealerCardValue)
-    cardDiv.append(dealerSuitContainer)
-    dealerSuitContainer.append(image)
-}  
-
 function getValue(element) {
     if (element === "J" ) {
        return 10
@@ -187,7 +126,18 @@ function getValue(element) {
 }
 
 
+let numbers = [ 2, 3, 9, 7]
+
+let total = numbers.reduce((total, element) => total + element)
+let el
+function checkValue(total) {
+    if (total < 10) {
+       return el = 11 + total
+    }else return el = 1 + total
     
+}
+
+console.log(checkValue(total))
 
 
 
@@ -196,34 +146,5 @@ function getValue(element) {
 
 
 
-// THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUITS. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY. 
-
-// function createDeck(arr) {
-    
-
-//     let cards = []
-//     for (let i = 0; i < 4; i++) {
-//         let card = arr.map(value => ({Suit: suits[i], Value: value }))
-//         cards.push(card)
-//         // deck = cards.pop()
-//     }
-//     return cards
-// }
-// console.log(createDeck(values))
 
 
-// Testing the change of value for the cards faces
-
-
-// function getValue(element) {
-//     if (element === "J" ) {
-//        return console.log(10)
-//     } else if (element === "Q") {
-//         console.log(11)
-//     } else if (element === "K") {
-//         console.log(12)
-//     } else return console.log(Number(element))
-        
-// }
-
-// getValue("7")
