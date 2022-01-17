@@ -65,11 +65,16 @@ function createDealerCard(newCard) {
   
 // export { createDealerCard, createPlayerCard, handleDealer}
 
-{/* <div class="card">
-          <div class="card-value-container">
-            <p class="dealer-cards-value">3</p>
-          </div>
-          <div class="dealer-suit-container">
-            <img class="dealer-suit" src="images/Hearts-solid.svg" alt="" />
-          </div>
-        </div> */}
+function getValue(element) {
+    if (element === "J" ) {
+       return 10
+    } else if (element === "Q") {
+        return 10
+    } else if (element === "K") {
+        return 10
+    } else return Number(element)
+        
+}
+
+
+

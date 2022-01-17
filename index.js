@@ -15,7 +15,13 @@
 
 // Need to create way to bet and track money
 // Need to track how much money player has and end game when the player is out of money (How much money will the player start with)
+// Need to add setTimeOut for slight delay for dealers card
+// Need to add message if dealer holds
 
+// THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
+// Place each card into players array to track total value and also for placement of each card so player can see their hand
+// Compare player total card value to dealer total card card value
+    
 
 
 
@@ -33,8 +39,7 @@ const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
 
 
 // Function to create deck of cards
-function getDeck()
-{
+function getDeck() {
     let deck = new Array();
 
     for(let i = 0; i < suits.length; i++)
@@ -49,6 +54,7 @@ function getDeck()
     return deck;
 }
 // console.log(getDeck(values))
+
 
 // Function to shuffle cards
 function shuffle(deck)
@@ -67,32 +73,36 @@ function shuffle(deck)
     return deck
 }
 
-let deck = getDeck(values)
-// console.log(shuffle(deck))
-let shuffledDeck = shuffle(deck)
-let dealer 
-console.log(shuffledDeck)
 
 
 
-// Need to add setTimeOut for slight delay
-// Need to add message if dealer holds
-       
+
+
 
 // Function to deal player card from top of deck with dealer function inside
-let id = 0
+
+const playersHand = []
+const dealersHand = []
 function handleDealer(event) {
-    // document.querySelector("deal-card")
     event.preventDefault()
+    
+    const deck = getDeck(values)
+    const shuffledDeck = shuffle(deck)
+
     let newPlayerCard = shuffledDeck.shift()
     let newDealerCard = shuffledDeck.shift()
+    let playerCardValue = getValue(newPlayerCard.Value)
+    let dealerCardValue = getValue(newDealerCard.Value)
+    playersHand.push(playerCardValue)
+    dealersHand.push(dealerCardValue)
     createPlayerCard(newPlayerCard)
     createDealerCard(newDealerCard)
+  
+    console.log(playersHand)
 
-    id++
-    console.log(id)
 }
 
+// Function that resets the game
 function handleReset() { 
     let el = document.getElementsByClassName("card")
     if (el.length > 0) {
@@ -165,8 +175,19 @@ function createDealerCard(newCard) {
     dealerSuitContainer.append(image)
 }  
 
+function getValue(element) {
+    if (element === "J" ) {
+       return 10
+    } else if (element === "Q") {
+        return 10
+    } else if (element === "K") {
+        return 10
+    } else return Number(element)
+        
+}
+
+
     
-    
 
 
 
@@ -175,15 +196,11 @@ function createDealerCard(newCard) {
 
 
 
-// THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
-// Place each card into players array to track total value and also for placement of each card so player can see their hand
-// Compare player total card value to dealer total card card value
-
-// THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUIT. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY. 
+// THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUITS. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY. 
 
 // function createDeck(arr) {
     
-//     let deck = []
+
 //     let cards = []
 //     for (let i = 0; i < 4; i++) {
 //         let card = arr.map(value => ({Suit: suits[i], Value: value }))
@@ -196,3 +213,17 @@ function createDealerCard(newCard) {
 
 
 // Testing the change of value for the cards faces
+
+
+// function getValue(element) {
+//     if (element === "J" ) {
+//        return console.log(10)
+//     } else if (element === "Q") {
+//         console.log(11)
+//     } else if (element === "K") {
+//         console.log(12)
+//     } else return console.log(Number(element))
+        
+// }
+
+// getValue("7")
