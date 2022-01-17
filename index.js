@@ -99,9 +99,12 @@ function handleDealer(event) {
     createCard(secondPlayerCard, player)
     createCard(firstDealerCard , dealer)
     createCard(secondDealerCard, dealer)
-
-  
-    // console.log(playersHand)
+    document.getElementById("hit-me").style.zIndex = 4
+    let hold = document.createElement("button")
+    hold.setAttribute("class", "hold")
+    hold.textContent = "Hold"
+    document.body.append(hold)
+    console.log(playersHand)
     console.log(dealersHand)
 
 }

@@ -89,4 +89,20 @@ body {
     display: flex;
     bottom: 5rem;
     left: 2rem;
+    width: 4rem;
+    text-align: center;
 }
+
+.hold {
+    position:absolute;
+    display: flex;
+    bottom: 8rem;
+    left: 2rem;
+    width: 4rem;
+    text-align: center;
+}
+
+#firsthand {
+    z-index: 2;
+}
+
