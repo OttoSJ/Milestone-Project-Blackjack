@@ -78,12 +78,12 @@ function shuffle(deck)
 
 const playersHand = []
 const dealersHand = []
+const deck = getDeck(values)
+const shuffledDeck = shuffle(deck)
 function handleDealer(event) {
     event.preventDefault()
     const dealer = "dealer"
     const player = "player"
-    const deck = getDeck(values)
-    const shuffledDeck = shuffle(deck)
 
     let firstPlayerCard = shuffledDeck.shift()
     let secondPlayerCard = shuffledDeck.shift()
@@ -99,10 +99,12 @@ function handleDealer(event) {
     createCard(secondPlayerCard, player)
     createCard(firstDealerCard , dealer)
     createCard(secondDealerCard, dealer)
+    createHitMeBtn()
     document.getElementById("hit-me").style.zIndex = 4
     let hold = document.createElement("button")
     hold.setAttribute("class", "hold")
     hold.textContent = "Hold"
+    hold.style.zIndex = 3
     document.body.append(hold)
     console.log(playersHand)
     console.log(dealersHand)
@@ -124,6 +126,8 @@ console.log(checkValue(total))
 // Function that resets the game
 function handleReset() { 
     let el = document.getElementsByClassName("card")
+    let hitMeButton = document.getElementById("hit-me")
+
     if (el.length > 0) {
         for (let i = 0; i < el.length; i++) {
             el[i].remove()
@@ -131,6 +135,11 @@ function handleReset() {
             
         }
     }
+    let hold = document.createElement("button")
+    hold.setAttribute("class", "cover-hold")
+
+    document.body.append(hold)
+    hitMeButton.remove()
     playersHand.length = 0;
     dealersHand.length = 0;
     console.log(el.length)

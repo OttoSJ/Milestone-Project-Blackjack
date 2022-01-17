@@ -1,13 +1,13 @@
-function handleDealer(event) {
+// function handleDealer(event) {
     
-    event.preventDefault()
-    let newCard = shuffledDeck.shift()
-    createPlayerCard(newCard)
-    createDealerCard(newCard)
-    // dealerCard()
-    id++
-    console.log(id)
-}
+//     event.preventDefault()
+//     let newCard = shuffledDeck.shift()
+//     createPlayerCard(newCard)
+//     createDealerCard(newCard)
+//     // dealerCard()
+//     id++
+//     console.log(id)
+// }
 
 
 
@@ -69,8 +69,15 @@ function createCard(newCard, contestant) {
     cardDiv.append(SuitContainer)
     SuitContainer.append(image)
 }
-  
-// export { createDealerCard, createPlayerCard, handleDealer}
+
+function createHitMeBtn() {
+    let button = document.createElement("button")
+    button.setAttribute("id", "hit-me")
+    button.setAttribute("onclick", "")
+    button.setAttribute("class", "deal-card")
+    button.textContent = "Hit Me"
+    document.body.append(button)
+}
 
 // Function checks the value of the card that was delt and assigns a value to face cards
 function getValue(element) {

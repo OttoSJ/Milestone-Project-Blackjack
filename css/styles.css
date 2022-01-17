@@ -5,8 +5,8 @@
 
 * {
     /* border: 1px solid black; */
-
 }
+
 body {
     background-color: rgb(42, 72, 42);
 }
@@ -25,7 +25,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
 }
 
 .dealer-card-container {
@@ -88,7 +88,7 @@ body {
     position:absolute;
     display: flex;
     bottom: 5rem;
-    left: 2rem;
+    left: 1rem;
     width: 4rem;
     text-align: center;
 }
@@ -97,9 +97,22 @@ body {
     position:absolute;
     display: flex;
     bottom: 8rem;
-    left: 2rem;
+    left: 1rem;
     width: 4rem;
     text-align: center;
+
+}
+.cover-hold {
+    position:absolute;
+    display: flex;
+    bottom: 8rem;
+    left: 1rem;
+    height: 3rem;
+    width: 4rem;
+    text-align: center;
+    background-color: rgb(42, 72, 42);
+    border: transparent;
+    z-index: 3;
 }
 
 #firsthand {
