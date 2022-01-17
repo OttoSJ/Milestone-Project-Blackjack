@@ -80,24 +80,32 @@ const playersHand = []
 const dealersHand = []
 function handleDealer(event) {
     event.preventDefault()
-    let dealer = "dealer"
-    let player = "player"
+    const dealer = "dealer"
+    const player = "player"
     const deck = getDeck(values)
     const shuffledDeck = shuffle(deck)
 
-    let newPlayerCard = shuffledDeck.shift()
-    let newDealerCard = shuffledDeck.shift()
-    let playerCardValue = getValue(newPlayerCard.Value)
-    let dealerCardValue = getValue(newDealerCard.Value)
-    playersHand.push(playerCardValue)
-    dealersHand.push(dealerCardValue)
-    createCard(newPlayerCard, player)
-    createCard(newDealerCard, dealer)
+    let firstPlayerCard = shuffledDeck.shift()
+    let secondPlayerCard = shuffledDeck.shift()
+    let firstDealerCard = shuffledDeck.shift()
+    let secondDealerCard = shuffledDeck.shift()
+    let firstPlayerCardValue = getValue(firstPlayerCard.Value)
+    let secondPlayerCardValue = getValue(secondPlayerCard.Value)
+    let firstDealerCardValue = getValue(firstDealerCard.Value)
+    let secondDealerCardValue = getValue(secondDealerCard.Value)
+    playersHand.push(firstPlayerCardValue, secondPlayerCardValue)
+    dealersHand.push(firstDealerCardValue, secondDealerCardValue)
+    createCard(firstPlayerCard, player)
+    createCard(secondPlayerCard, player)
+    createCard(firstDealerCard , dealer)
+    createCard(secondDealerCard, dealer)
+
   
     // console.log(playersHand)
     console.log(dealersHand)
 
 }
+
 
 let numbers = [ 2, 3, 9, 7]
 let total = numbers.reduce((total, element) => total + element)
@@ -131,35 +139,7 @@ function handleReset() {
 
 
 
-function createCard(newCard, contestant) {
-    for (let i = 0; i < 2; i++) {
-        
-        let cardDiv = document.createElement("div")
-        cardDiv.setAttribute("class", "card")
-        
-        let CardsContainer = document.querySelector(`.${contestant}-card-container`)
-        
-        let cardValueContainer = document.createElement("div")
-        cardValueContainer.setAttribute("class", "card-value-container")
-        
-        let CardValue = document.createElement("p")
-        CardValue.setAttribute("class", `${contestant}-cards-value`)
-        CardValue.textContent = `${newCard.Value}` 
-        
-        let SuitContainer = document.createElement("div")
-        SuitContainer.setAttribute("class",`${contestant}-suit-container`)
-        
-        let image = document.createElement("img")
-        image.setAttribute("class", `${contestant}-suit`)
-        image.src = `images/${newCard.Suit}-solid.svg`
-        
-        CardsContainer.append(cardDiv)
-        cardDiv.append(cardValueContainer)
-        cardValueContainer.append(CardValue)
-        cardDiv.append(SuitContainer)
-        SuitContainer.append(image)
-    }  
-}
+
     
 
 

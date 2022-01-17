@@ -40,36 +40,35 @@ function createPlayerCard(newCard) {
 }
 
 
-// function createDealerCard(newCard) {
-//     // for (let i = 0; i < 2; i++) {
-//     // }
-
-//     let cardDiv = document.createElement("div")
-//     cardDiv.setAttribute("class", "card")
-        
-//     let dealerCardsContainer = document.querySelector(".dealer-card-container")
+function createCard(newCard, contestant) {
+    // for (let i = 0; i < 2; i++) {
+    // }  
     
-//     let cardValueContainer = document.createElement("div")
-//     cardValueContainer.setAttribute("class", "card-value-container")
+    let cardDiv = document.createElement("div")
+    cardDiv.setAttribute("class", "card")
     
-//     let dealerCardValue = document.createElement("p")
-//     dealerCardValue.setAttribute("class", "dealer-cards-value")
-//     dealerCardValue.textContent = `${newCard.Value}` 
+    let CardsContainer = document.querySelector(`.${contestant}-card-container`)
     
-//     let dealerSuitContainer = document.createElement("div")
-//     dealerSuitContainer.setAttribute("class","dealer-suit-container")
+    let cardValueContainer = document.createElement("div")
+    cardValueContainer.setAttribute("class", "card-value-container")
     
-//     let image = document.createElement("img")
-//     image.setAttribute("class", "dealer-suit")
-//     image.src = `images/${newCard.Suit}-solid.svg`
+    let CardValue = document.createElement("p")
+    CardValue.setAttribute("class", `${contestant}-cards-value`)
+    CardValue.textContent = `${newCard.Value}` 
     
-//     dealerCardsContainer.append(cardDiv)
-//     cardDiv.append(cardValueContainer)
-//     cardValueContainer.append(dealerCardValue)
-//     cardDiv.append(dealerSuitContainer)
-//     dealerSuitContainer.append(image)
-// }  
-
+    let SuitContainer = document.createElement("div")
+    SuitContainer.setAttribute("class",`${contestant}-suit-container`)
+    
+    let image = document.createElement("img")
+    image.setAttribute("class", `${contestant}-suit`)
+    image.src = `images/${newCard.Suit}-solid.svg`
+    
+    CardsContainer.append(cardDiv)
+    cardDiv.append(cardValueContainer)
+    cardValueContainer.append(CardValue)
+    cardDiv.append(SuitContainer)
+    SuitContainer.append(image)
+}
   
 // export { createDealerCard, createPlayerCard, handleDealer}
 
@@ -87,6 +86,16 @@ function getValue(element) {
         
 }
 
+// This function will be to replace the repition in the handleDealer function once I can figure out how to implement it
+function firstHand(shuffledDeck) {
+    for (let i = 0; i < 2; i++) {
+        let hand = []
+        let card = shuffledDeck.shift()
+        hand.push(card)
+    }
+    return hand
+}
+
 
 // THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUITS. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY. 
 
@@ -99,6 +108,6 @@ function getValue(element) {
 //         // deck = cards.pop()
 //     }
 //     return cards
-// }
 // console.log(createDeck(values))
+// }
 
