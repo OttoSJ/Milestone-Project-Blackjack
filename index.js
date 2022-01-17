@@ -36,8 +36,6 @@ const suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
 // Array of card values
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
-
-
 // Function to create deck of cards
 function getDeck() {
     let deck = new Array();
@@ -80,6 +78,8 @@ const playersHand = []
 const dealersHand = []
 const deck = getDeck(values)
 const shuffledDeck = shuffle(deck)
+console.log(shuffledDeck)
+// I hate how repetive this function is!!!!!!! 
 function handleDealer(event) {
     event.preventDefault()
     const dealer = "dealer"
@@ -103,25 +103,39 @@ function handleDealer(event) {
     document.getElementById("hit-me").style.zIndex = 4
     let hold = document.createElement("button")
     hold.setAttribute("class", "hold")
+    hold.setAttribute("onclick", "playerHold()")
     hold.textContent = "Hold"
     hold.style.zIndex = 3
     document.body.append(hold)
     console.log(playersHand)
     console.log(dealersHand)
-
+   
+    console.log(checkValue(dealersHand))
+    console.log(checkValue(playersHand))
 }
 
+function handleNewCard(event) {
+    event.preventDefault()
+    const dealer = "dealer"
+    const player = "player"
 
-let numbers = [ 2, 3, 9, 7]
-let total = numbers.reduce((total, element) => total + element)
-let el
-function checkValue(total) {
-    if (total < 10) {
-       return el = 11 + total
-    }else return el = 1 + total
+    let nextPlayerCard = shuffledDeck.shift()
+    let nextPlayerCardValue = getValue(nextPlayerCard.Value)
+
+    let nextDealerCard = shuffledDeck.shift()
+    let nextDealerCardValue = getValue(nextDealerCard.Value)
     
+    playersHand.push(nextPlayerCardValue)
+    dealersHand.push(nextDealerCardValue)
+    nextCard(nextPlayerCard, dealer)
+    nextCard(nextDealerCard, player)
+    console.log(playersHand)
+    console.log(checkValue(playersHand))
+    console.log(dealersHand)
+    console.log(checkValue(dealersHand))
+   
+
 }
-console.log(checkValue(total))
 
 // Function that resets the game
 function handleReset() { 
@@ -135,16 +149,25 @@ function handleReset() {
             
         }
     }
+    // Need to figure out a better solution for hiding this button. This creates a button everytime this has to run to delete the cards
     let hold = document.createElement("button")
     hold.setAttribute("class", "cover-hold")
-
     document.body.append(hold)
+
     hitMeButton.remove()
     playersHand.length = 0;
     dealersHand.length = 0;
-    console.log(el.length)
-    console.log("reset clicked")
+    
 }
+   
+   
+
+
+
+
+
+
+    
 
 
 

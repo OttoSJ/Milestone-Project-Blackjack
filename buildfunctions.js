@@ -11,25 +11,25 @@
 
 
 
-function createPlayerCard(newCard) {
+function nextCard(newCard, contestant) {
 
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
 
-    let playerCardsContainer = document.querySelector(".player-cards-container")
+    let playerCardsContainer = document.querySelector(`.${contestant}-card-container`)
     
     let cardValueContainer = document.createElement("div")
     cardValueContainer.setAttribute("class", "card-value-container")
     
     let playerCardValue = document.createElement("p")
-    playerCardValue.setAttribute("class", "player-card-value")
+    playerCardValue.setAttribute("class", `${contestant}-card-value`)
     playerCardValue.textContent = `${newCard.Value}` 
     
     let playerSuitContainer = document.createElement("div")
-    playerSuitContainer.setAttribute("class","player-suit-container")
+    playerSuitContainer.setAttribute("class",`${contestant}-suit-container`)
     
     let image = document.createElement("img")
-    image.setAttribute("class", "player-suit")
+    image.setAttribute("class", `${contestant}-suit`)
     image.src = `images/${newCard.Suit}-solid.svg`
     
     playerCardsContainer.append(cardDiv)
@@ -47,7 +47,7 @@ function createCard(newCard, contestant) {
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
     
-    let CardsContainer = document.querySelector(`.${contestant}-card-container`)
+    let cardsContainer = document.querySelector(`.${contestant}-card-container`)
     
     let cardValueContainer = document.createElement("div")
     cardValueContainer.setAttribute("class", "card-value-container")
@@ -63,7 +63,7 @@ function createCard(newCard, contestant) {
     image.setAttribute("class", `${contestant}-suit`)
     image.src = `images/${newCard.Suit}-solid.svg`
     
-    CardsContainer.append(cardDiv)
+    cardsContainer.append(cardDiv)
     cardDiv.append(cardValueContainer)
     cardValueContainer.append(CardValue)
     cardDiv.append(SuitContainer)
@@ -73,10 +73,11 @@ function createCard(newCard, contestant) {
 function createHitMeBtn() {
     let button = document.createElement("button")
     button.setAttribute("id", "hit-me")
-    button.setAttribute("onclick", "")
+    button.setAttribute("onclick", "handleNewCard(event)")
     button.setAttribute("class", "deal-card")
     button.textContent = "Hit Me"
-    document.body.append(button)
+    let main = document.querySelector("main")
+    main.append(button)
 }
 
 // Function checks the value of the card that was delt and assigns a value to face cards
@@ -92,6 +93,14 @@ function getValue(element) {
     } else return Number(element)
         
 }
+
+// Function check the total value of both the dealer and player's hands
+function checkValue(total) {
+   return total.reduce((total, element) => total + element)
+}
+    
+// THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM
+// ********************************************************************************
 
 // This function will be to replace the repition in the handleDealer function once I can figure out how to implement it
 function firstHand(shuffledDeck) {
