@@ -11,7 +11,7 @@
 
 
 
-function nextCard(newCard, contestant) {
+function renderNextCard(newCard, contestant) {
 
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
@@ -83,7 +83,7 @@ function createHitMeBtn() {
 // Function checks the value of the card that was delt and assigns a value to face cards
 function getValue(element) {
     if (element === "A") {
-        return "A"
+        return 11
     }else if (element === "J" ) {
        return 10
     } else if (element === "Q") {
@@ -99,6 +99,23 @@ function checkValue(total) {
    return total.reduce((total, element) => total + element)
 }
     
+function compareHands() {
+    let player = checkValue(playersHand)
+    let dealer = checkValue(dealersHand)
+    if (player < dealer) {
+        return dealer + " Dealer Wins!"
+    }else return player + " Player Wins!"
+}
+
+
+// let winner = (checkValue(playersHand) < checkValue(dealersHand)) ? console.log("Dealer Wins!") : console.log("Player Wins!")
+// return winner   
+
+
+
+
+
+
 // THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM
 // ********************************************************************************
 

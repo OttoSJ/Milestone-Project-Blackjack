@@ -1,5 +1,7 @@
 // import { createDealerCard  } from "./buildfunctions.js";
 
+
+
 // JAVASCRIPT
 
 // CARDS AND FUCTIONALITY
@@ -107,11 +109,19 @@ function handleDealer(event) {
     hold.textContent = "Hold"
     hold.style.zIndex = 3
     document.body.append(hold)
-    console.log(playersHand)
     console.log(dealersHand)
+    console.log(playersHand)
    
     console.log(checkValue(dealersHand))
     console.log(checkValue(playersHand))
+}
+
+function playerHold() {
+    let hitMeButton = document.getElementById("hit-me")
+    hitMeButton.remove()
+    let results = compareHands()
+  
+    console.log(results)
 }
 
 function handleNewCard(event) {
@@ -127,12 +137,15 @@ function handleNewCard(event) {
     
     playersHand.push(nextPlayerCardValue)
     dealersHand.push(nextDealerCardValue)
-    nextCard(nextPlayerCard, dealer)
-    nextCard(nextDealerCard, player)
-    console.log(playersHand)
-    console.log(checkValue(playersHand))
-    console.log(dealersHand)
-    console.log(checkValue(dealersHand))
+    renderNextCard(nextPlayerCard, dealer)
+    renderNextCard(nextDealerCard, player)
+    
+    let dealersHandTotal = checkValue(dealersHand)
+    let playersHandTotal = checkValue(playersHand)
+    console.log(dealersHandTotal)
+    console.log(playersHandTotal)
+    
+    
    
 
 }
@@ -162,8 +175,9 @@ function handleReset() {
    
    
 
-
-
+// let test = "201"
+// let string = test.split("").join("+")
+// console.log(eval(string))
 
 
 
