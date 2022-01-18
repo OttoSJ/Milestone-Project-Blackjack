@@ -146,11 +146,9 @@ function handleNewCard(event) {
     console.log(dealersHandTotal)
     console.log(playersHandTotal)
     
+}
     
    
-
-}
-
 // Function that resets the game
 function handleReset() { 
     let el = document.getElementsByClassName("card")
@@ -174,11 +172,9 @@ function handleReset() {
     
 }
    
-   
 
-// let test = "201"
-// let string = test.split("").join("+")
-// console.log(eval(string))
+
+   
 
 
 

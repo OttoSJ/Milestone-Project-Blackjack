@@ -1,13 +1,3 @@
-// function handleDealer(event) {
-    
-//     event.preventDefault()
-//     let newCard = shuffledDeck.shift()
-//     createPlayerCard(newCard)
-//     createDealerCard(newCard)
-//     // dealerCard()
-//     id++
-//     console.log(id)
-// }
 
 
 
@@ -41,8 +31,7 @@ function renderNextCard(newCard, contestant) {
 
 
 function createCard(newCard, contestant) {
-    // for (let i = 0; i < 2; i++) {
-    // }  
+   
     
     let cardDiv = document.createElement("div")
     cardDiv.setAttribute("class", "card")
