@@ -1,12 +1,12 @@
-// import { createDealerCard  } from "./buildfunctions.js";
+
+
+
+
 
 
 
 // JAVASCRIPT
-
 // CARDS AND FUCTIONALITY
-
-
 
 // Need way to keep track of dealers card total 
 // Need a way to keep track of players card total
@@ -20,15 +20,14 @@
 // Need to add setTimeOut for slight delay for dealers card
 // Need to add message if dealer holds
 
-// THINGS THAT NEED TO HAPPEN WHEN I CLICK THE BUTTON
-// Place each card into players array to track total value and also for placement of each card so player can see their hand
-// Compare player total card value to dealer total card card value
-    
-
 
 
 // CSS
-// Need to decide on layout
+
+
+
+
+
 
 
 
@@ -101,6 +100,8 @@ function handleDealer(event) {
     createCard(secondPlayerCard, player)
     createCard(firstDealerCard , dealer)
     createCard(secondDealerCard, dealer)
+    checkForBlackjack(dealersHand, dealer)
+    checkForBlackjack(playersHand, player)
     createHitMeBtn()
     document.getElementById("hit-me").style.zIndex = 4
     let hold = document.createElement("button")

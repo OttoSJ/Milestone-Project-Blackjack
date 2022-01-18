@@ -99,6 +99,7 @@ function checkValue(total) {
    return total.reduce((total, element) => total + element)
 }
     
+// Function compares hands and returns the winner
 function compareHands() {
     let player = checkValue(playersHand)
     let dealer = checkValue(dealersHand)
@@ -108,11 +109,11 @@ function compareHands() {
 }
 
 
-// let winner = (checkValue(playersHand) < checkValue(dealersHand)) ? console.log("Dealer Wins!") : console.log("Player Wins!")
-// return winner   
-
-
-
+function checkForBlackjack(contestentsHand, contestant) {
+     if (checkValue(contestentsHand) === 21) {
+       return console.log(contestant)
+    }
+}
 
 
 
