@@ -65,7 +65,7 @@ function createHitMeBtn() {
 }
 
 // Function checks the value of the card that was delt and assigns a value to face cards
-function getValue(element) {
+function getFaceCardValue(element) {
   if (element === "A") {
     return 11;
   } else if (element === "J") {
@@ -103,6 +103,15 @@ function checkForBlackjack(contestentsHand, contestant) {
   } else if (contestentsHand > 21) {
     return console.log(`${contestant} Loses!!`);
   } else console.log(`No Blackjack ${contestant}`);
+}
+
+// NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
+function dealerHolds(dealersHand, dealersHandTotal) {
+  let handTotal = `${dealersHandTotal}`;
+  if (handTotal >= 16) {
+    // `${dealersHand}`.pop()`${dealersHand}`.unshift();
+    return console.log("Dealer is at or over 16");
+  }
 }
 
 // THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM

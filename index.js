@@ -2,6 +2,7 @@
 // CARDS AND FUCTIONALITY
 
 // Need to keep dealer from taking another card after 16
+// Need to have dealer take another card until dealer is at or above 16
 
 // GAME FUNCTIONALITY
 
@@ -78,15 +79,16 @@ function handleDealer(event) {
   let secondPlayerCard = shuffledDeck.shift();
   let firstDealerCard = shuffledDeck.shift();
   let secondDealerCard = shuffledDeck.shift();
-  let firstPlayerCardValue = getValue(firstPlayerCard.Value);
-  let secondPlayerCardValue = getValue(secondPlayerCard.Value);
-  let firstDealerCardValue = getValue(firstDealerCard.Value);
-  let secondDealerCardValue = getValue(secondDealerCard.Value);
+  let firstPlayerCardValue = getFaceCardValue(firstPlayerCard.Value);
+  let secondPlayerCardValue = getFaceCardValue(secondPlayerCard.Value);
+  let firstDealerCardValue = getFaceCardValue(firstDealerCard.Value);
+  let secondDealerCardValue = getFaceCardValue(secondDealerCard.Value);
   playersHand.push(firstPlayerCardValue, secondPlayerCardValue);
   dealersHand.push(firstDealerCardValue, secondDealerCardValue);
   let dealersHandTotal = checkValue(dealersHand);
   let playersHandTotal = checkValue(playersHand);
 
+  dealerHolds(dealersHand, dealersHandTotal);
   createCard(firstPlayerCard, player);
   createCard(secondPlayerCard, player);
   createCard(firstDealerCard, dealer);
@@ -103,8 +105,8 @@ function handleDealer(event) {
   hold.textContent = "Hold";
   hold.style.zIndex = 3;
   document.body.append(hold);
-  // console.log(dealersHand)
-  // console.log(playersHand)
+  // console.log(dealersHand);
+  // console.log(playersHand);
 
   console.log(checkValue(dealersHand));
   console.log(checkValue(playersHand));
@@ -124,23 +126,26 @@ function handleNewCard(event) {
   const player = "player";
 
   let nextPlayerCard = shuffledDeck.shift();
-  let nextPlayerCardValue = getValue(nextPlayerCard.Value);
+  let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
 
   let nextDealerCard = shuffledDeck.shift();
-  let nextDealerCardValue = getValue(nextDealerCard.Value);
+  let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
 
-  playersHand.push(nextPlayerCardValue);
   dealersHand.push(nextDealerCardValue);
-  renderNextCard(nextPlayerCard, dealer);
-  renderNextCard(nextDealerCard, player);
-
+  playersHand.push(nextPlayerCardValue);
+  // dealersHand.pop();
+  renderNextCard(nextPlayerCard, player);
+  renderNextCard(nextDealerCard, dealer);
   let dealersHandTotal = checkValue(dealersHand);
   let playersHandTotal = checkValue(playersHand);
-
-  checkForBlackjack(dealersHandTotal, dealer);
-  checkForBlackjack(playersHandTotal, player);
+  dealerHolds(dealersHand, dealersHandTotal);
+  checkForBlackjack(dealersHand, dealersHandTotal);
+  checkForBlackjack(playersHand, playersHandTotal);
   console.log(dealersHandTotal);
   console.log(playersHandTotal);
+  // console.log(dealersHand);
+  // console.log("---------------");
+  // console.log(playersHand);
 }
 
 // Function that resets the game
@@ -151,7 +156,7 @@ function handleReset() {
   if (el.length > 0) {
     for (let i = 0; i < el.length; i++) {
       el[i].remove();
-      handleReset();
+      // handleReset();
     }
   }
   // Need to figure out a better solution for hiding this button. This creates a button everytime this has to run to delete the cards
