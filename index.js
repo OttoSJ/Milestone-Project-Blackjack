@@ -114,7 +114,8 @@ function handleDealer(event) {
 
 function playerHold() {
   let hitMeButton = document.getElementById("hit-me");
-  hitMeButton.remove();
+  hitMeButton.disabled = true;
+  hitMeButton.style.backgroundColor = "grey";
   let results = compareHands();
 
   console.log(results);
