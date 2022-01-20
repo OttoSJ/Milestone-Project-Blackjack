@@ -89,7 +89,7 @@ function handleDealer(event) {
   let dealersHandTotal = checkValue(dealersHand);
   let playersHandTotal = checkValue(playersHand);
 
-  dealerHolds(dealersHand, dealersHandTotal);
+  dealerHolds(dealersHandTotal);
   createCard(firstPlayerCard, player);
   createCard(secondPlayerCard, player);
   createCard(firstDealerCard, dealer);
@@ -98,19 +98,13 @@ function handleDealer(event) {
   checkForBlackjack(playersHandTotal, player);
   checkForDoubleAces(playersHand, playersHandTotal);
   checkForDoubleAces(dealersHand, dealersHandTotal);
+  createHoldButton();
 
-  // document.getElementById("hit-me").style.zIndex = 4;
-  let holdButton = document.createElement("button");
-  holdButton.setAttribute("class", "hold");
-  holdButton.setAttribute("onclick", "playerHold()");
-  holdButton.textContent = "Hold";
-  holdButton.style.zIndex = 3;
-  document.body.append(holdButton);
-  // console.log(dealersHand);
-  // console.log(playersHand);
+  console.log(dealersHandTotal);
+  console.log(playersHandTotal);
 
-  console.log(checkValue(dealersHand));
-  console.log(checkValue(playersHand));
+  // console.log(checkValue(dealersHand));
+  // console.log(checkValue(playersHand));
 }
 
 function playerHold() {
@@ -121,7 +115,10 @@ function playerHold() {
   let holdButton = document.querySelector(".hold");
   holdButton.remove();
 
-  createPlayAgainBtn();
+  if (checkValue(dealersHand) > 16) {
+    createPlayAgainBtn();
+  } else return console.log("dealer under 17");
+  // createPlayAgainBtn();
 
   let results = compareHands();
 
@@ -146,14 +143,37 @@ function dealNewCard(event) {
   renderNextCard(nextDealerCard, dealer);
   let dealersHandTotal = checkValue(dealersHand);
   let playersHandTotal = checkValue(playersHand);
-  dealerHolds(dealersHand, dealersHandTotal);
-  checkForBlackjack(dealersHand, dealersHandTotal);
-  checkForBlackjack(playersHand, playersHandTotal);
+  dealerHolds(dealersHandTotal);
+  checkForBlackjack(dealersHandTotal, dealer);
+  checkForBlackjack(playersHandTotal, player);
+  checkForDoubleAces(playersHand, playersHandTotal);
+  checkForDoubleAces(dealersHand, dealersHandTotal);
   console.log(dealersHandTotal);
   console.log(playersHandTotal);
   // console.log(dealersHand);
   // console.log("---------------");
   // console.log(playersHand);
+}
+
+function dealNewPlayerCard(event) {
+  event.preventDefault();
+
+  const player = "player";
+
+  let nextPlayerCard = shuffledDeck.shift();
+  let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
+  let dealersHandTotal = checkValue(dealersHand);
+
+  playersHand.push(nextPlayerCardValue);
+
+  renderNextCard(nextPlayerCard, player);
+
+  let playersHandTotal = checkValue(playersHand);
+
+  checkForBlackjack(playersHand, playersHandTotal);
+
+  console.log(dealersHandTotal);
+  console.log(playersHandTotal);
 }
 
 // Function that resets the game

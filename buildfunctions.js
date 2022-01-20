@@ -36,12 +36,12 @@ function createCard(newCard, contestant) {
   let cardValueContainer = document.createElement("div");
   cardValueContainer.setAttribute("class", "card-value-container");
 
-  let CardValue = document.createElement("p");
-  CardValue.setAttribute("class", `${contestant}-cards-value`);
-  CardValue.textContent = `${newCard.Value}`;
+  let cardValue = document.createElement("p");
+  cardValue.setAttribute("class", `${contestant}-cards-value`);
+  cardValue.textContent = `${newCard.Value}`;
 
-  let SuitContainer = document.createElement("div");
-  SuitContainer.setAttribute("class", `${contestant}-suit-container`);
+  let suitContainer = document.createElement("div");
+  suitContainer.setAttribute("class", `${contestant}-suit-container`);
 
   let image = document.createElement("img");
   image.setAttribute("class", `${contestant}-suit`);
@@ -49,31 +49,9 @@ function createCard(newCard, contestant) {
 
   cardsContainer.append(cardDiv);
   cardDiv.append(cardValueContainer);
-  cardValueContainer.append(CardValue);
-  cardDiv.append(SuitContainer);
-  SuitContainer.append(image);
-}
-
-function dealNewPlayerCard(event) {
-  event.preventDefault();
-
-  const player = "player";
-
-  let nextPlayerCard = shuffledDeck.shift();
-  let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
-
-  playersHand.push(nextPlayerCardValue);
-
-  renderNextCard(nextPlayerCard, player);
-
-  let playersHandTotal = checkValue(playersHand);
-
-  checkForBlackjack(playersHand, playersHandTotal);
-
-  console.log(playersHandTotal);
-  // console.log(dealersHand);
-  // console.log("---------------");
-  // console.log(playersHand);
+  cardValueContainer.append(cardValue);
+  cardDiv.append(suitContainer);
+  suitContainer.append(image);
 }
 
 function createPlayerDealerHitMeBtn() {
@@ -87,7 +65,7 @@ function createPlayerDealerHitMeBtn() {
   let main = document.querySelector("main");
   main.append(button);
 }
-//
+
 function createPlayerHitMeBtn() {
   let button = document.createElement("button");
   button.setAttribute("id", "hit-me");
@@ -99,7 +77,14 @@ function createPlayerHitMeBtn() {
   let main = document.querySelector("main");
   main.append(button);
 }
-
+function createHoldButton() {
+  let holdButton = document.createElement("button");
+  holdButton.setAttribute("class", "hold");
+  holdButton.setAttribute("onclick", "playerHold()");
+  holdButton.textContent = "Hold";
+  holdButton.style.zIndex = 3;
+  document.body.append(holdButton);
+}
 // Function checks the value of the card that was delt and assigns a value to face cards
 function getFaceCardValue(element) {
   if (element === "A") {
@@ -122,7 +107,7 @@ function checkValue(total) {
 function checkForDoubleAces(contestant, handValue) {
   if (contestant.length === 2 && handValue >= 22) {
     return console.log(handValue - 10);
-    // Need to write a function that calls for another card it the conditions here are true.
+    // Need to write a return that will subract -10 if the condition evaluates true
   }
 }
 
@@ -140,10 +125,10 @@ function compareHands() {
 // Function checks for blackjack
 function checkForBlackjack(contestentsHand, contestant) {
   if (contestentsHand === 21) {
-    return console.log(`${contestant} Has Blackjack!`);
+    return console.log(contestant, `Has Blackjack!`);
   } else if (contestentsHand > 21) {
-    return console.log(`${contestant} Loses!!`);
-  } else console.log(`No Blackjack ${contestant}`);
+    return console.log(contestant, ` Loses!!`);
+  } else console.log(`No Blackjack `, contestant);
 }
 
 function createPlayAgainBtn() {
@@ -155,7 +140,7 @@ function createPlayAgainBtn() {
 }
 
 // NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
-function dealerHolds(dealersHand, dealersHandTotal) {
+function dealerHolds(dealersHandTotal) {
   let handTotal = `${dealersHandTotal}`;
   if (handTotal > 15 && handTotal < 22) {
     createPlayerHitMeBtn();
