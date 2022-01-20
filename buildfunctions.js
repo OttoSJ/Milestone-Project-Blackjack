@@ -54,12 +54,48 @@ function createCard(newCard, contestant) {
   SuitContainer.append(image);
 }
 
-function createHitMeBtn() {
+function dealNewPlayerCard(event) {
+  event.preventDefault();
+
+  const player = "player";
+
+  let nextPlayerCard = shuffledDeck.shift();
+  let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
+
+  playersHand.push(nextPlayerCardValue);
+
+  renderNextCard(nextPlayerCard, player);
+
+  let playersHandTotal = checkValue(playersHand);
+
+  checkForBlackjack(playersHand, playersHandTotal);
+
+  console.log(playersHandTotal);
+  // console.log(dealersHand);
+  // console.log("---------------");
+  // console.log(playersHand);
+}
+
+function createPlayerDealerHitMeBtn() {
   let button = document.createElement("button");
   button.setAttribute("id", "hit-me");
   button.setAttribute("onclick", "dealNewCard(event)");
   button.setAttribute("class", "deal-card");
   button.textContent = "Hit Me";
+  button.style.zIndex = 4;
+  button.style.backgroundColor = "grey";
+  let main = document.querySelector("main");
+  main.append(button);
+}
+
+function createPlayerHitMeBtn() {
+  let button = document.createElement("button");
+  button.setAttribute("id", "hit-me");
+  button.setAttribute("onclick", "dealNewPlayerCard(event)");
+  button.setAttribute("class", "deal-card");
+  button.textContent = "Hit Me";
+  button.style.backgroundColor = "blue";
+  button.style.zIndex = 4;
   let main = document.querySelector("main");
   main.append(button);
 }
@@ -86,6 +122,7 @@ function checkValue(total) {
 function checkForDoubleAces(contestant, handValue) {
   if (contestant.length === 2 && handValue >= 22) {
     return console.log(handValue - 10);
+    // Need to write a function that calls for another card it the conditions here are true.
   }
 }
 
@@ -93,7 +130,9 @@ function checkForDoubleAces(contestant, handValue) {
 function compareHands() {
   let player = checkValue(playersHand);
   let dealer = checkValue(dealersHand);
-  if (player < dealer) {
+  if (player === dealer) {
+    return " Draw!";
+  } else if (player < dealer) {
     return dealer + " Dealer Wins!";
   } else return player + " Player Wins!";
 }
@@ -118,10 +157,12 @@ function createPlayAgainBtn() {
 // NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
 function dealerHolds(dealersHand, dealersHandTotal) {
   let handTotal = `${dealersHandTotal}`;
-  if (handTotal >= 16) {
-    // `${dealersHand}`.pop()`${dealersHand}`.unshift();
+  if (handTotal > 15 && handTotal < 22) {
+    createPlayerHitMeBtn();
+    document.getElementById("hit-me").style.zIndex = 4;
     return console.log("Dealer is at or over 16");
-  }
+  } else createPlayerDealerHitMeBtn();
+  console.log("dealer is under 17");
 }
 
 // **************************************************************

@@ -98,8 +98,8 @@ function handleDealer(event) {
   checkForBlackjack(playersHandTotal, player);
   checkForDoubleAces(playersHand, playersHandTotal);
   checkForDoubleAces(dealersHand, dealersHandTotal);
-  createHitMeBtn();
-  document.getElementById("hit-me").style.zIndex = 4;
+
+  // document.getElementById("hit-me").style.zIndex = 4;
   let holdButton = document.createElement("button");
   holdButton.setAttribute("class", "hold");
   holdButton.setAttribute("onclick", "playerHold()");
@@ -141,7 +141,7 @@ function dealNewCard(event) {
 
   dealersHand.push(nextDealerCardValue);
   playersHand.push(nextPlayerCardValue);
-  // dealersHand.pop();
+
   renderNextCard(nextPlayerCard, player);
   renderNextCard(nextDealerCard, dealer);
   let dealersHandTotal = checkValue(dealersHand);
