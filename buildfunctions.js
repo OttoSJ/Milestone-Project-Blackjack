@@ -87,7 +87,7 @@ function createPlayerDealerHitMeBtn() {
   let main = document.querySelector("main");
   main.append(button);
 }
-
+//
 function createPlayerHitMeBtn() {
   let button = document.createElement("button");
   button.setAttribute("id", "hit-me");
