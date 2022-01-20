@@ -69,6 +69,7 @@ const dealersHand = [];
 const deck = getDeck(values);
 const shuffledDeck = shuffle(deck);
 console.log(shuffledDeck);
+
 // I hate how repetive this function is!!!!!!!
 function handleDealer(event) {
   event.preventDefault();
@@ -99,12 +100,12 @@ function handleDealer(event) {
   checkForDoubleAces(dealersHand, dealersHandTotal);
   createHitMeBtn();
   document.getElementById("hit-me").style.zIndex = 4;
-  let hold = document.createElement("button");
-  hold.setAttribute("class", "hold");
-  hold.setAttribute("onclick", "playerHold()");
-  hold.textContent = "Hold";
-  hold.style.zIndex = 3;
-  document.body.append(hold);
+  let holdButton = document.createElement("button");
+  holdButton.setAttribute("class", "hold");
+  holdButton.setAttribute("onclick", "playerHold()");
+  holdButton.textContent = "Hold";
+  holdButton.style.zIndex = 3;
+  document.body.append(holdButton);
   // console.log(dealersHand);
   // console.log(playersHand);
 
@@ -116,12 +117,18 @@ function playerHold() {
   let hitMeButton = document.getElementById("hit-me");
   hitMeButton.disabled = true;
   hitMeButton.style.backgroundColor = "grey";
+
+  let holdButton = document.querySelector(".hold");
+  holdButton.remove();
+
+  createPlayAgainBtn();
+
   let results = compareHands();
 
   console.log(results);
 }
 
-function handleNewCard(event) {
+function dealNewCard(event) {
   event.preventDefault();
   const dealer = "dealer";
   const player = "player";
@@ -161,9 +168,9 @@ function handleReset() {
     }
   }
   // Need to figure out a better solution for hiding this button. This creates a button everytime this has to run to delete the cards
-  let hold = document.createElement("button");
-  hold.setAttribute("class", "cover-hold");
-  document.body.append(hold);
+  holdButton = document.createElement("button");
+  holdButton.setAttribute("class", "cover-hold");
+  document.body.append(holdButton);
 
   hitMeButton.remove();
   playersHand.length = 0;

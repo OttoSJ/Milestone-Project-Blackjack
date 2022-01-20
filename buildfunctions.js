@@ -57,7 +57,7 @@ function createCard(newCard, contestant) {
 function createHitMeBtn() {
   let button = document.createElement("button");
   button.setAttribute("id", "hit-me");
-  button.setAttribute("onclick", "handleNewCard(event)");
+  button.setAttribute("onclick", "dealNewCard(event)");
   button.setAttribute("class", "deal-card");
   button.textContent = "Hit Me";
   let main = document.querySelector("main");
@@ -82,6 +82,7 @@ function checkValue(total) {
   return total.reduce((total, element) => total + element);
 }
 
+// Function checks for double Aces
 function checkForDoubleAces(contestant, handValue) {
   if (contestant.length === 2 && handValue >= 22) {
     return console.log(handValue - 10);
@@ -97,12 +98,21 @@ function compareHands() {
   } else return player + " Player Wins!";
 }
 
+// Function checks for blackjack
 function checkForBlackjack(contestentsHand, contestant) {
   if (contestentsHand === 21) {
     return console.log(`${contestant} Has Blackjack!`);
   } else if (contestentsHand > 21) {
     return console.log(`${contestant} Loses!!`);
   } else console.log(`No Blackjack ${contestant}`);
+}
+
+function createPlayAgainBtn() {
+  let playAgainBtn = document.createElement("button");
+  playAgainBtn.setAttribute("class", "play-again-btn");
+  playAgainBtn.setAttribute("onclick", "testFunction()");
+  playAgainBtn.textContent = "Play Again";
+  document.body.append(playAgainBtn);
 }
 
 // NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
@@ -113,6 +123,8 @@ function dealerHolds(dealersHand, dealersHandTotal) {
     return console.log("Dealer is at or over 16");
   }
 }
+
+// **************************************************************
 
 // THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM
 // ********************************************************************************
@@ -139,3 +151,7 @@ function firstHand(shuffledDeck) {
 //     return cards
 // console.log(createDeck(values))
 // }
+
+function testFunction() {
+  console.log("testing");
+}
