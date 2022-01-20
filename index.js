@@ -100,8 +100,8 @@ function handleDealer(event) {
   checkForDoubleAces(dealersHand, dealersHandTotal);
   createHoldButton();
 
-  console.log(dealersHandTotal);
-  console.log(playersHandTotal);
+  // console.log(dealersHandTotal);
+  // console.log(playersHandTotal);
 
   // console.log(checkValue(dealersHand));
   // console.log(checkValue(playersHand));
@@ -115,14 +115,14 @@ function playerHold() {
   let holdButton = document.querySelector(".hold");
   holdButton.remove();
 
-  if (checkValue(dealersHand) > 16) {
-    createPlayAgainBtn();
-  } else return console.log("dealer under 17");
-  // createPlayAgainBtn();
-
   let results = compareHands();
-
   console.log(results);
+
+  if (checkValue(dealersHand) >= 16) {
+    createPlayAgainBtn();
+  } else return createDealerHitMeBtn();
+
+  // THIS IF STATEMENT ABOVE NEEDS TO RETURN A WAY FOR DEALER TO TAKE ANOTHER CARD UNTIL IT REACHES 16 OR MORE.
 }
 
 function dealNewCard(event) {
@@ -148,32 +148,43 @@ function dealNewCard(event) {
   checkForBlackjack(playersHandTotal, player);
   checkForDoubleAces(playersHand, playersHandTotal);
   checkForDoubleAces(dealersHand, dealersHandTotal);
-  console.log(dealersHandTotal);
-  console.log(playersHandTotal);
-  // console.log(dealersHand);
-  // console.log("---------------");
-  // console.log(playersHand);
+}
+
+function dealNewDealerCard(event) {
+  const dealer = "dealer";
+
+  let nextDealerCard = shuffledDeck.shift();
+  let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
+
+  dealersHand.push(nextDealerCardValue);
+
+  renderNextCard(nextDealerCard, dealer);
+
+  let dealersHandTotal = checkValue(dealersHand);
+
+  checkForBlackjack(dealersHandTotal, dealer);
 }
 
 function dealNewPlayerCard(event) {
   event.preventDefault();
 
+  // const dealer = "dealer";
   const player = "player";
 
   let nextPlayerCard = shuffledDeck.shift();
   let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
-  let dealersHandTotal = checkValue(dealersHand);
 
   playersHand.push(nextPlayerCardValue);
 
   renderNextCard(nextPlayerCard, player);
 
+  // let dealersHandTotal = checkValue(dealersHand);
   let playersHandTotal = checkValue(playersHand);
 
-  checkForBlackjack(playersHand, playersHandTotal);
+  checkForBlackjack(playersHandTotal, player);
 
-  console.log(dealersHandTotal);
-  console.log(playersHandTotal);
+  // console.log(checkForBlackjack(dealersHandTotal, dealer));
+  // console.log(checkForBlackjack(playersHandTotal, player));
 }
 
 // Function that resets the game

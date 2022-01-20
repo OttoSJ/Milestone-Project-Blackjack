@@ -77,6 +77,26 @@ function createPlayerHitMeBtn() {
   let main = document.querySelector("main");
   main.append(button);
 }
+function createHitMeBtn(buttonColor, clickFunction) {
+  let button = document.createElement("button");
+  button.setAttribute("id", "hit-me");
+  button.setAttribute("onclick", `${clickFunction}`);
+  button.setAttribute("class", "deal-card");
+  button.textContent = "Hit Me";
+  button.style.backgroundColor = `${buttonColor}`;
+  button.style.zIndex = 4;
+  let main = document.querySelector("main");
+  main.append(button);
+}
+
+function createDealerHitMeBtn() {
+  let dealersHandTotal = checkValue(dealersHand);
+  if (dealersHandTotal < 17) {
+    return createHitMeBtn("red", "dealNewDealerCard()");
+    // console.log("dealer under 17 creating new dealer hit me botton");
+  } else return console.log("dealer holds");
+}
+
 function createHoldButton() {
   let holdButton = document.createElement("button");
   holdButton.setAttribute("class", "hold");
@@ -106,29 +126,31 @@ function checkValue(total) {
 // Function checks for double Aces
 function checkForDoubleAces(contestant, handValue) {
   if (contestant.length === 2 && handValue >= 22) {
+    return handValue - 10;
+  } else if (contestant.length < 2 && handValue > 10) {
     return console.log(handValue - 10);
-    // Need to write a return that will subract -10 if the condition evaluates true
   }
 }
 
 // Function compares hands and returns the winner
 function compareHands() {
-  let player = checkValue(playersHand);
-  let dealer = checkValue(dealersHand);
-  if (player === dealer) {
+  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkValue(dealersHand);
+  if (playersHandTotal === dealersHandTotal) {
     return " Draw!";
-  } else if (player < dealer) {
-    return dealer + " Dealer Wins!";
-  } else return player + " Player Wins!";
+  } else if (playersHandTotal < dealersHandTotal) {
+    return dealersHandTotal + " Dealer Wins!";
+  } else return playersHandTotal + " Player Wins!";
 }
 
 // Function checks for blackjack
 function checkForBlackjack(contestentsHand, contestant) {
   if (contestentsHand === 21) {
-    return console.log(contestant, `Has Blackjack!`);
+    return console.log(contestentsHand, contestant, `Has Blackjack!`);
   } else if (contestentsHand > 21) {
-    return console.log(contestant, ` Loses!!`);
-  } else console.log(`No Blackjack `, contestant);
+    // return createPlayAgainBtn();
+    return console.log(contestentsHand, contestant, `Loses`);
+  } else console.log(contestentsHand, `No Blackjack`, contestant);
 }
 
 function createPlayAgainBtn() {
@@ -136,6 +158,9 @@ function createPlayAgainBtn() {
   playAgainBtn.setAttribute("class", "play-again-btn");
   playAgainBtn.setAttribute("onclick", "testFunction()");
   playAgainBtn.textContent = "Play Again";
+  let holdButton = document.querySelector(".hold");
+  // holdButton.remove();
+
   document.body.append(playAgainBtn);
 }
 
@@ -149,6 +174,18 @@ function dealerHolds(dealersHandTotal) {
   } else createPlayerDealerHitMeBtn();
   console.log("dealer is under 17");
 }
+
+// function dealerHolds(dealersHandTotal) {
+//   let handTotal = `${dealersHandTotal}`;
+//   if (handTotal > 15 && handTotal < 22) {
+//     createHitMeBtn("blue", "dealNewCard(event)");
+//     document.getElementById("hit-me").style.zIndex = 4;
+//     return console.log("Dealer is at or over 16");
+//   } else createHitMeBtn("grey", "dealNewPlayerCard(event)");
+//   document.getElementById("hit-me").style.zIndex = 4;
+
+//   console.log("dealer is under 17");
+// }
 
 // **************************************************************
 
