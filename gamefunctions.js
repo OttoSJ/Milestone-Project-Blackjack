@@ -187,3 +187,42 @@ function handleReset() {
   playersHand.length = 0;
   dealersHand.length = 0;
 }
+
+let dealersTotal = [11, 11, 10];
+
+let numberOfAces = [];
+
+findNumberOfAces = (number) => {
+  let aces = number.filter((number) => number === 11);
+  numberOfAces = [...aces];
+  return aces;
+};
+
+checkTotalHandValue = (playersHand) => {
+  let total = playersHand.reduce((total, element) => total + element);
+  let grandTotal = total;
+  return grandTotal;
+};
+
+addAces = (dealersTotal) => {
+  if (numberOfAces.length === 0) {
+    return console.log(dealersTotal);
+  } else if (numberOfAces.length === 1 && dealersTotal > 10) {
+    return console.log(dealersTotal - 10);
+  } else if (numberOfAces.length === 2 && dealersTotal < 10) {
+    return console.log(dealersTotal - 10);
+  } else if (numberOfAces.length === 2 && dealersTotal > 10) {
+    return console.log(dealersTotal - 20);
+  } else if (numberOfAces.length === 3 && dealersTotal > 10) {
+    return console.log(dealersTotal - 30);
+  } else return console.log(dealersTotal - 40);
+};
+
+findNumberOfAces(dealersTotal);
+console.log(numberOfAces);
+console.log(numberOfAces.length);
+
+checkTotalHandValue(dealersTotal);
+console.log(checkTotalHandValue(dealersTotal));
+let totalDealersCount = checkTotalHandValue(dealersTotal);
+addAces(totalDealersCount);
