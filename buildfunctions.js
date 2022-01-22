@@ -178,6 +178,10 @@ function checkForBlackjack(contestentsHand, contestant) {
   } else console.log(contestentsHand, contestant);
 }
 
+function testFunction() {
+  console.log("testing");
+}
+
 // NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
 function dealerHolds(dealersHandTotal) {
   let handTotal = `${dealersHandTotal}`;
@@ -188,20 +192,6 @@ function dealerHolds(dealersHandTotal) {
   } else createPlayerDealerHitMeBtn();
   console.log("dealer is under 17");
 }
-
-// function dealerHolds(dealersHandTotal) {
-//   let handTotal = `${dealersHandTotal}`;
-//   if (handTotal > 15 && handTotal < 22) {
-//     createHitMeBtn("blue", "dealNewCard(event)");
-//     document.getElementById("hit-me").style.zIndex = 4;
-//     return console.log("Dealer is at or over 16");
-//   } else createHitMeBtn("grey", "dealNewPlayerCard(event)");
-//   document.getElementById("hit-me").style.zIndex = 4;
-
-//   console.log("dealer is under 17");
-// }
-
-// **************************************************************
 
 // THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM
 // ********************************************************************************
@@ -227,10 +217,6 @@ function firstHand(shuffledDeck) {
 //     }
 //     return cards
 // console.log(createDeck(values))
-// }
-
-// function testFunction() {
-//   console.log("testing");
 // }
 
 // ***************************************************************

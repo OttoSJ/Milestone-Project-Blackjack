@@ -110,8 +110,10 @@ function dealNewPlayerCard(event) {
 
   checkForBlackjack(playersHandTotal, player);
   createPlayAgainBtn(playersHandTotal);
-  // console.log(checkForBlackjack(dealersHandTotal, dealer));
-  // console.log(checkForBlackjack(playersHandTotal, player));
+  if (playersHandTotal > 21) {
+    let hitMeButton = document.getElementById("hit-me");
+    hitMeButton.disabled = true;
+  }
 }
 
 function playerHold() {
@@ -123,7 +125,9 @@ function playerHold() {
   //   console.log("playerHold clicked");
   //   dealNewDealerCard();
   dealer(dealersHandTotal, playersHandTotal);
-  //   playerHold();
+  if (dealersHandTotal < playersHandTotal) {
+    return playerHold();
+  }
 }
 
 function dealer(dealersHandTotal, playersHandTotal) {
@@ -150,7 +154,6 @@ function dealNewDealerCard() {
 
   checkForBlackjack(dealersHandTotal, dealer);
   checkForBlackjack(playersHandTotal, player);
-  // disableDealerHitMeBtn(dealersHandTotal, playersHandTotal);
 }
 
 function createPlayAgainBtnDealer() {
@@ -162,4 +165,25 @@ function createPlayAgainBtnDealer() {
   let holdButton = document.querySelector(".hold");
   holdButton.remove();
   console.log("createPlayAgainBtn clicked");
+}
+
+function handleReset() {
+  //   let el = document.getElementsByClassName("card");
+  let hitMeButton = document.getElementById("hit-me");
+  //   console.log(el.length);
+  //   if (el.length > 0) {
+  //     el.romove();
+  //     handleReset();
+  //   }
+  //   for (let i = 0; i < el.length; i++) {
+  //     el.remove();
+  //   }
+  // Need to figure out a better solution for hiding this button. This creates a button everytime this has to run to delete the cards
+  holdButton = document.createElement("button");
+  holdButton.setAttribute("class", "cover-hold");
+  document.body.append(holdButton);
+
+  hitMeButton.remove();
+  playersHand.length = 0;
+  dealersHand.length = 0;
 }
