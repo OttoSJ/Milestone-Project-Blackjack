@@ -123,7 +123,7 @@ function createPlayAgainBtn(playersHandTotal) {
 function disableDealerHitMeBtn(dealersHandTotal, playersHandTotal) {
   if (dealersHandTotal >= 16 && playersHandTotal <= 21) {
     let hitMeButton = document.getElementById("dealer");
-    hitMeButton.disabled = true;
+    // hitMeButton.disabled = true;
     console.log(compareHands());
     createPlayAgainBtn();
   }
