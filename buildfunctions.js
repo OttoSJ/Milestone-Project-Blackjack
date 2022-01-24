@@ -121,16 +121,6 @@ function createPlayAgainBtn(playersHandTotal) {
   }
 }
 
-// Function disables hit me button if dealer has more than 16
-function disableDealerHitMeBtn(dealersHandTotal, playersHandTotal) {
-  if (dealersHandTotal >= 16 && playersHandTotal <= 21) {
-    let hitMeButton = document.getElementById("dealer");
-    // hitMeButton.disabled = true;
-    console.log(compareHands());
-    createPlayAgainBtn();
-  }
-}
-
 // Function checks the value of the card that was delt and assigns a value to face cards
 function getFaceCardValue(element) {
   if (element === "A") {
@@ -149,29 +139,9 @@ function getFaceCardValue(element) {
 //   return total.reduce((total, element) => total + element);
 // }
 
-// Function checks for double Aces
-function checkForDoubleAces(contestant, handValue) {
-  if (contestant.length === 2 && handValue >= 22) {
-    return handValue - 10;
-  } else if (contestant.length > 2 && handValue > 10) {
-    return console.log(handValue - 10);
-  }
-}
-
 // Function compares hands and returns the winner
-function compareHands() {
-  let playersHandTotal = checkTotalHandValue(playersHand);
-  let dealersHandTotal = checkTotalHandValue(dealersHand);
-  if (playersHandTotal === dealersHandTotal) {
-    return " Draw!";
-  } else if (playersHandTotal < dealersHandTotal && dealersHandTotal < 22) {
-    return dealersHandTotal + " Dealer Wins!";
-  } else if (playersHandTotal > dealersHandTotal && playersHandTotal < 22) {
-    return playersHandTotal + " Player Wins!";
-  }
-}
 
-// Function checks for blackjack
+// Function checks for winner. CHANGE NAME TO CHECK FOR WINNER
 function checkForBlackjack(contestentsHand, contestant) {
   if (contestentsHand === 21) {
     return console.log(contestentsHand, contestant, `Has Blackjack!`);
@@ -220,3 +190,86 @@ function createDeck(arr) {
   return _.flattenDeep(cards);
 }
 // console.log(createDeck(values));
+
+let dealersTotal = [11, 3];
+
+let numberOfAces = [];
+
+// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
+findNumberOfAces = (number) => {
+  let aces = number.filter((number) => number === 11);
+  numberOfAces = [...aces];
+  return aces;
+};
+// This function will replace checkValue function
+checkTotalHandValue = (playersHand) => {
+  let total = playersHand.reduce((total, element) => total + element);
+  let grandTotal = total;
+  return grandTotal;
+};
+
+// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard. This function will provide the single source of truth for all the hands. It will require a new array for player and dealer to push the adjusted total into and the checkForBlackjack function will recieve its number from here.
+
+adjustHandTotalForAces = (handTotal) => {
+  if (numberOfAces.length === 0) {
+    return console.log(handTotal);
+  } else if (numberOfAces.length === 1 && handTotal <= 21) {
+    return console.log(handTotal);
+  } else if (numberOfAces.length === 1 && handTotal > 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length === 2 && handTotal <= 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
+    return console.log(handTotal - 20);
+  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length === 2 && handTotal > 21) {
+    return console.log(handTotal - 20);
+  } else if (numberOfAces.length === 3 && handTotal > 10) {
+    return console.log(handTotal - 30);
+  } else return console.log(handTotal - 40);
+};
+
+findNumberOfAces(dealersTotal);
+console.log(numberOfAces);
+console.log(numberOfAces.length);
+
+checkTotalHandValue(dealersTotal);
+console.log(checkTotalHandValue(dealersTotal));
+let totalDealersCount = checkTotalHandValue(dealersTotal);
+adjustHandTotalForAces(totalDealersCount);
+
+// FUNCTIONS THAT HAVE BEEN REMOVED FROM USE
+
+// Function checks for double Aces
+// function checkForDoubleAces(contestant, handValue) {
+//   if (contestant.length === 2 && handValue >= 22) {
+//     return handValue - 10;
+//   } else if (contestant.length > 2 && handValue > 10) {
+//     return console.log(handValue - 10);
+//   }
+// }
+
+// Function disables hit me button if dealer has more than 16
+// function disableDealerHitMeBtn(dealersHandTotal, playersHandTotal) {
+//   if (dealersHandTotal >= 16 && playersHandTotal <= 21) {
+//     let hitMeButton = document.getElementById("dealer");
+//     // hitMeButton.disabled = true;
+//     console.log(compareHands());
+//     createPlayAgainBtn();
+//   }
+// }
+
+// function compareHands() {
+//   let playersHandTotal = checkTotalHandValue(playersHand);
+//   let dealersHandTotal = checkTotalHandValue(dealersHand);
+//   if (playersHandTotal === dealersHandTotal) {
+//     return " Draw!";
+//   } else if (playersHandTotal < dealersHandTotal && dealersHandTotal < 22) {
+//     return dealersHandTotal + " Dealer Wins!";
+//   } else if (playersHandTotal > dealersHandTotal && playersHandTotal < 22) {
+//     return playersHandTotal + " Player Wins!";
+//   }
+// }

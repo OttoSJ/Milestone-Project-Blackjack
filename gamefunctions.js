@@ -80,8 +80,7 @@ function handleDealer(event) {
   createCard(secondDealerCard, dealer);
   checkForBlackjack(dealersHandTotal, dealer);
   checkForBlackjack(playersHandTotal, player);
-  checkForDoubleAces(playersHand, playersHandTotal);
-  checkForDoubleAces(dealersHand, dealersHandTotal);
+
   createHoldButton();
   createPlayerHitMeBtn();
 }
@@ -179,53 +178,3 @@ function handleReset() {
   playersHand.length = 0;
   dealersHand.length = 0;
 }
-
-let dealersTotal = [11, 3];
-
-let numberOfAces = [];
-
-// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
-findNumberOfAces = (number) => {
-  let aces = number.filter((number) => number === 11);
-  numberOfAces = [...aces];
-  return aces;
-};
-// This function will replace checkValue function
-checkTotalHandValue = (playersHand) => {
-  let total = playersHand.reduce((total, element) => total + element);
-  let grandTotal = total;
-  return grandTotal;
-};
-
-// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard. This function will provide the single source of truth for all the hands. It will require a new array for player and dealer to push the adjusted total into and the checkForBlackjack function will recieve its number from here.
-
-adjustHandTotalForAces = (handTotal) => {
-  if (numberOfAces.length === 0) {
-    return console.log(handTotal);
-  } else if (numberOfAces.length === 1 && handTotal <= 21) {
-    return console.log(handTotal);
-  } else if (numberOfAces.length === 1 && handTotal > 21) {
-    return console.log(handTotal - 10);
-  } else if (numberOfAces.length === 2 && handTotal <= 21) {
-    return console.log(handTotal - 10);
-  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
-    return console.log(handTotal - 20);
-  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
-    return console.log(handTotal - 10);
-  } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
-    return console.log(handTotal - 10);
-  } else if (numberOfAces.length === 2 && handTotal > 21) {
-    return console.log(handTotal - 20);
-  } else if (numberOfAces.length === 3 && handTotal > 10) {
-    return console.log(handTotal - 30);
-  } else return console.log(handTotal - 40);
-};
-
-findNumberOfAces(dealersTotal);
-console.log(numberOfAces);
-console.log(numberOfAces.length);
-
-checkTotalHandValue(dealersTotal);
-console.log(checkTotalHandValue(dealersTotal));
-let totalDealersCount = checkTotalHandValue(dealersTotal);
-adjustHandTotalForAces(totalDealersCount);
