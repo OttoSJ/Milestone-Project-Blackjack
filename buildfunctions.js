@@ -92,7 +92,7 @@ function createHitMeBtn(contestant, buttonColor, clickFunction) {
 }
 
 function createDealerHitMeBtn() {
-  let dealersHandTotal = checkValue(dealersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
   if (dealersHandTotal < 17) {
     return createHitMeBtn("dealer", "red", "dealNewDealerCard()");
     // console.log("dealer under 17 creating new dealer hit me botton");
@@ -144,10 +144,10 @@ function getFaceCardValue(element) {
   } else return Number(element);
 }
 
-// Function check the total value of both the dealer and player's hands
-function checkValue(total) {
-  return total.reduce((total, element) => total + element);
-}
+// Delete this function once you've determined that it's no longer in use anywhere else
+// function checkValue(total) {
+//   return total.reduce((total, element) => total + element);
+// }
 
 // Function checks for double Aces
 function checkForDoubleAces(contestant, handValue) {
@@ -160,8 +160,8 @@ function checkForDoubleAces(contestant, handValue) {
 
 // Function compares hands and returns the winner
 function compareHands() {
-  let playersHandTotal = checkValue(playersHand);
-  let dealersHandTotal = checkValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
   if (playersHandTotal === dealersHandTotal) {
     return " Draw!";
   } else if (playersHandTotal < dealersHandTotal && dealersHandTotal < 22) {

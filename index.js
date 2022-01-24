@@ -86,8 +86,8 @@ function handleDealer(event) {
   let secondDealerCardValue = getFaceCardValue(secondDealerCard.Value);
   playersHand.push(firstPlayerCardValue, secondPlayerCardValue);
   dealersHand.push(firstDealerCardValue, secondDealerCardValue);
-  let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checcheckTotalHandValuekValue(playersHand);
 
   // dealerHolds(dealersHandTotal);
   createCard(firstPlayerCard, player);
@@ -100,12 +100,6 @@ function handleDealer(event) {
   checkForDoubleAces(dealersHand, dealersHandTotal);
   createHoldButton();
   createPlayerHitMeBtn();
-
-  // console.log(dealersHandTotal);
-  // console.log(playersHandTotal);
-
-  // console.log(checkValue(dealersHand));
-  // console.log(checkValue(playersHand));
 }
 
 function playerHold() {
@@ -121,15 +115,6 @@ function playerHold() {
   createDealerHitMeBtn();
   dealNewDealerCard();
   playerHold();
-  // let results = compareHands();
-  // console.log(results);
-
-  // if (checkValue(dealersHand) >= 16) {
-  //   createPlayAgainBtn();
-  // } else return createDealerHitMeBtn();
-  // if (checkValue(dealersHand) >= 16) {
-  //   return compareHands();
-  // }
 }
 
 function dealNewCard(event) {
@@ -149,13 +134,6 @@ function dealNewCard(event) {
   renderNextCard(nextPlayerCard, player);
   renderNextCard(nextDealerCard, dealer);
   createPlayerHitMeBtn();
-  // let dealersHandTotal = checkValue(dealersHand);
-  // let playersHandTotal = checkValue(playersHand);
-  // dealerHolds(dealersHandTotal);
-  // checkForBlackjack(dealersHandTotal, dealer);
-  // checkForBlackjack(playersHandTotal, player);
-  // checkForDoubleAces(playersHand, playersHandTotal);
-  // checkForDoubleAces(dealersHand, dealersHandTotal);
 }
 
 function dealNewDealerCard() {
@@ -168,8 +146,8 @@ function dealNewDealerCard() {
 
   renderNextCard(nextDealerCard, dealer);
 
-  let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   checkForBlackjack(dealersHandTotal, dealer);
   checkForBlackjack(playersHandTotal, player);
@@ -190,8 +168,8 @@ function dealNewPlayerCard(event) {
 
   renderNextCard(nextPlayerCard, player);
 
-  // let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  // let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   checkForBlackjack(playersHandTotal, player);
   createPlayAgainBtn(playersHandTotal);
