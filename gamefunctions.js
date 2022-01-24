@@ -71,8 +71,8 @@ function handleDealer(event) {
   let secondDealerCardValue = getFaceCardValue(secondDealerCard.Value);
   playersHand.push(firstPlayerCardValue, secondPlayerCardValue);
   dealersHand.push(firstDealerCardValue, secondDealerCardValue);
-  let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   createCard(firstPlayerCard, player);
   createCard(secondPlayerCard, player);
@@ -84,18 +84,11 @@ function handleDealer(event) {
   checkForDoubleAces(dealersHand, dealersHandTotal);
   createHoldButton();
   createPlayerHitMeBtn();
-
-  // console.log(dealersHandTotal);
-  // console.log(playersHandTotal);
-
-  // console.log(checkValue(dealersHand));
-  // console.log(checkValue(playersHand));
 }
 
 function dealNewPlayerCard(event) {
   event.preventDefault();
 
-  // const dealer = "dealer";
   const player = "player";
 
   let nextPlayerCard = shuffledDeck.shift();
@@ -105,8 +98,7 @@ function dealNewPlayerCard(event) {
 
   renderNextCard(nextPlayerCard, player);
 
-  // let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   checkForBlackjack(playersHandTotal, player);
   createPlayAgainBtn(playersHandTotal);
@@ -119,8 +111,8 @@ function dealNewPlayerCard(event) {
 function playerHold() {
   let hitMeButton = document.getElementById("hit-me");
   hitMeButton.disabled = true;
-  let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   //   console.log("playerHold clicked");
   //   dealNewDealerCard();
@@ -149,8 +141,8 @@ function dealNewDealerCard() {
 
   renderNextCard(nextDealerCard, dealer);
 
-  let dealersHandTotal = checkValue(dealersHand);
-  let playersHandTotal = checkValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
   checkForBlackjack(dealersHandTotal, dealer);
   checkForBlackjack(playersHandTotal, player);
@@ -188,34 +180,45 @@ function handleReset() {
   dealersHand.length = 0;
 }
 
-let dealersTotal = [11, 11, 10];
+let dealersTotal = [11, 3];
 
 let numberOfAces = [];
 
+// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
 findNumberOfAces = (number) => {
   let aces = number.filter((number) => number === 11);
   numberOfAces = [...aces];
   return aces;
 };
-
+// This function will replace checkValue function
 checkTotalHandValue = (playersHand) => {
   let total = playersHand.reduce((total, element) => total + element);
   let grandTotal = total;
   return grandTotal;
 };
 
-addAces = (dealersTotal) => {
+// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard. This function will provide the single source of truth for all the hands. It will require a new array for player and dealer to push the adjusted total into and the checkForBlackjack function will recieve its number from here.
+
+adjustHandTotalForAces = (handTotal) => {
   if (numberOfAces.length === 0) {
-    return console.log(dealersTotal);
-  } else if (numberOfAces.length === 1 && dealersTotal > 10) {
-    return console.log(dealersTotal - 10);
-  } else if (numberOfAces.length === 2 && dealersTotal < 10) {
-    return console.log(dealersTotal - 10);
-  } else if (numberOfAces.length === 2 && dealersTotal > 10) {
-    return console.log(dealersTotal - 20);
-  } else if (numberOfAces.length === 3 && dealersTotal > 10) {
-    return console.log(dealersTotal - 30);
-  } else return console.log(dealersTotal - 40);
+    return console.log(handTotal);
+  } else if (numberOfAces.length === 1 && handTotal <= 21) {
+    return console.log(handTotal);
+  } else if (numberOfAces.length === 1 && handTotal > 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length === 2 && handTotal <= 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
+    return console.log(handTotal - 20);
+  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
+    return console.log(handTotal - 10);
+  } else if (numberOfAces.length === 2 && handTotal > 21) {
+    return console.log(handTotal - 20);
+  } else if (numberOfAces.length === 3 && handTotal > 10) {
+    return console.log(handTotal - 30);
+  } else return console.log(handTotal - 40);
 };
 
 findNumberOfAces(dealersTotal);
@@ -225,4 +228,4 @@ console.log(numberOfAces.length);
 checkTotalHandValue(dealersTotal);
 console.log(checkTotalHandValue(dealersTotal));
 let totalDealersCount = checkTotalHandValue(dealersTotal);
-addAces(totalDealersCount);
+adjustHandTotalForAces(totalDealersCount);

@@ -1,3 +1,5 @@
+// var baseFlatten = require("./_baseFlatten");
+
 function renderNextCard(newCard, contestant) {
   let cardDiv = document.createElement("div");
   cardDiv.setAttribute("class", "card");
@@ -164,8 +166,9 @@ function compareHands() {
     return " Draw!";
   } else if (playersHandTotal < dealersHandTotal && dealersHandTotal < 22) {
     return dealersHandTotal + " Dealer Wins!";
-  } else if (playersHandTotal > dealersHandTotal && playersHandTotal < 22)
+  } else if (playersHandTotal > dealersHandTotal && playersHandTotal < 22) {
     return playersHandTotal + " Player Wins!";
+  }
 }
 
 // Function checks for blackjack
@@ -208,64 +211,12 @@ function firstHand(shuffledDeck) {
 
 // THIS IS MY FUNCTION TO CREATE A DECK OF CARDS BUT IT'S INCOMPLETE. CURRENTLY IT GIVES ME AN ARRAY WITH FOUR ARRAYS OF ALL THE SUITS. STILL NEED TO FIGURE OUT HOW TO COMBINED THEM INTO ONE ARRAY.
 
-// function createDeck(arr) {
-//     let cards = []
-//     for (let i = 0; i < 4; i++) {
-//         let card = arr.map(value => ({Suit: suits[i], Value: value }))
-//         cards.push(card)
-//         // deck = cards.pop()
-//     }
-//     return cards
-// console.log(createDeck(values))
-// }
-
-// ***************************************************************
-
-// let playersHand= [2, 7, 11, 11, 11, 11]
-// let newArray = []
-// function checkValue(total) {
-//   return total.reduce((total, element) => total + element);
-// }
-
-// function compareHands(arr) {
-//   arr.filter( number => {
-//     if (number === 11) {
-//       newArray.push(number)
-//     }
-//   })
-//   return newArray.length
-
-// }
-
-// console.log(compareHands(playersHand))
-
-// function addAces(newArray) {
-//   if (newArray.length === 0) {
-//     return console.log(checkValue(playersHand))
-//   }else if (newArray.length === 1) {
-//     return console.log(checkValue(playersHand))
-//   }else if (newArray.length === 2) {
-//    return console.log(checkValue(playersHand) - 10)
-//   }else if (newArray.length === 3) {
-//     return console.log(checkValue(playersHand) - 20)
-//   }else return console.log(checkValue(playersHand) - 30)
-// }
-// addAces(newArray)
-
-// // console.log(addAces(playersHand))
-//   // return let twoAces = checkValue(playersHand)
-// class Player {
-//   constructor(handValue){
-//   this.handValue = [handValue]
-//   }
-
-//   checkValue(handValue) {
-//     return this.handValue.reduce((total, element) => total + element);
-//   }
-//   }
-
-// let playerOne = new Player(12)
-// playerOne.handValue.push(1)
-// playerOne.handValue.push(12)
-// console.log(playerOne)
-// console.log(playerOne.checkValue())
+function createDeck(arr) {
+  let cards = [];
+  for (let i = 0; i < 4; i++) {
+    let card = arr.map((value) => ({ Suit: suits[i], Value: value }));
+    cards[i] = [...card];
+  }
+  return _.flattenDeep(cards);
+}
+// console.log(createDeck(values));
