@@ -65,11 +65,14 @@ function shuffle(deck) {
 // Function to deal player card from top of deck with dealer function inside
 
 const playersHand = [];
+const numberOfAcesPlayer = [];
 const dealersHand = [];
+const numberOfAcesDealer = [11];
 const deck = getDeck(values);
 const shuffledDeck = shuffle(deck);
 console.log(shuffledDeck);
-
+findNumberOfAces(numberOfAcesDealer);
+console.log("Hello");
 // I hate how repetive this function is!!!!!!!
 function handleDealer(event) {
   event.preventDefault();
@@ -87,17 +90,17 @@ function handleDealer(event) {
   playersHand.push(firstPlayerCardValue, secondPlayerCardValue);
   dealersHand.push(firstDealerCardValue, secondDealerCardValue);
   let dealersHandTotal = checkTotalHandValue(dealersHand);
-  let playersHandTotal = checcheckTotalHandValuekValue(playersHand);
+  let playersHandTotal = checkTotalHandValue(playersHand);
 
-  // dealerHolds(dealersHandTotal);
   createCard(firstPlayerCard, player);
   createCard(secondPlayerCard, player);
   createCard(firstDealerCard, dealer);
   createCard(secondDealerCard, dealer);
-  checkForBlackjack(dealersHandTotal, dealer);
-  checkForBlackjack(playersHandTotal, player);
-  checkForDoubleAces(playersHand, playersHandTotal);
-  checkForDoubleAces(dealersHand, dealersHandTotal);
+  findNumberOfAces(playersHand, numberOfAcesPlayer);
+  findNumberOfAces(dealersHand, numberOfAcesDealer);
+  checkForWinner(dealersHandTotal, dealer);
+  checkForWinner(playersHandTotal, player);
+
   createHoldButton();
   createPlayerHitMeBtn();
 }
@@ -117,25 +120,6 @@ function playerHold() {
   playerHold();
 }
 
-function dealNewCard(event) {
-  event.preventDefault();
-  const dealer = "dealer";
-  const player = "player";
-
-  let nextPlayerCard = shuffledDeck.shift();
-  let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
-
-  let nextDealerCard = shuffledDeck.shift();
-  let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
-
-  dealersHand.push(nextDealerCardValue);
-  playersHand.push(nextPlayerCardValue);
-
-  renderNextCard(nextPlayerCard, player);
-  renderNextCard(nextDealerCard, dealer);
-  createPlayerHitMeBtn();
-}
-
 function dealNewDealerCard() {
   const dealer = "dealer";
   const player = "player";
@@ -149,10 +133,11 @@ function dealNewDealerCard() {
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
-  checkForBlackjack(dealersHandTotal, dealer);
-  checkForBlackjack(playersHandTotal, player);
+  findNumberOfAces(playersHand, numberOfAcesPlayer);
+  findNumberOfAces(dealersHand, numberOfAcesDealer);
 
-  // disableDealerHitMeBtn(dealersHandTotal, playersHandTotal);
+  checkForWinner(dealersHandTotal, dealer);
+  checkForWinner(playersHandTotal, player);
 }
 
 function dealNewPlayerCard(event) {
@@ -171,10 +156,11 @@ function dealNewPlayerCard(event) {
   // let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
-  checkForBlackjack(playersHandTotal, player);
+  findNumberOfAces(playersHand, numberOfAcesPlayer);
+  findNumberOfAces(dealersHand, numberOfAcesDealer);
+
+  checkForWinner(playersHandTotal, player);
   createPlayAgainBtn(playersHandTotal);
-  // console.log(checkForBlackjack(dealersHandTotal, dealer));
-  // console.log(checkForBlackjack(playersHandTotal, player));
 }
 
 // Function that resets the game
