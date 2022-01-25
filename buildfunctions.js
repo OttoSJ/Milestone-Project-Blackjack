@@ -1,5 +1,3 @@
-// var baseFlatten = require("./_baseFlatten");
-
 function renderNextCard(newCard, contestant) {
   let cardDiv = document.createElement("div");
   cardDiv.setAttribute("class", "card");
@@ -109,8 +107,8 @@ function createHoldButton() {
 }
 
 // Function creates play again button and renders
-function createPlayAgainBtn(playersHandTotal) {
-  if (playersHandTotal > 21) {
+function createPlayAgainBtn(HandTotal) {
+  if (HandTotal > 21) {
     let playAgainBtn = document.createElement("button");
     playAgainBtn.setAttribute("class", "play-again-btn");
     playAgainBtn.setAttribute("onclick", "testFunction()");
@@ -153,13 +151,6 @@ function getFaceCardValue(element) {
   } else return Number(element);
 }
 
-// Delete this function once you've determined that it's no longer in use anywhere else
-// function checkValue(total) {
-//   return total.reduce((total, element) => total + element);
-// }
-
-// Function compares hands and returns the winner
-
 // Function checks for winner. CHANGE NAME TO CHECK FOR WINNER
 function checkForWinner(contestentsHand, contestant) {
   if (contestentsHand === 21) {
@@ -184,45 +175,20 @@ function dealerHolds(dealersHandTotal) {
   console.log("dealer is under 17");
 }
 
-// THESE FUNCTIONS BELOW ARE NOT IN USE AS IM STILL WORKING ON THEM OR WORKING ON HOW TO EMPLEMENT THEM
-// ********************************************************************************
-
-// This function will be to replace the repition in the handleDealer function once I can figure out how to implement it
-function firstHand(shuffledDeck) {
-  for (let i = 0; i < 2; i++) {
-    let hand = [];
-    let card = shuffledDeck.shift();
-    hand.push(card);
-  }
-  return hand;
-}
-
-// Need to switch out this function with the one I found. Mine works now!!
-function createDeck(arr) {
-  let cards = [];
-  for (let i = 0; i < 4; i++) {
-    let card = arr.map((value) => ({ Suit: suits[i], Value: value }));
-    cards[i] = [...card];
-  }
-  return _.flattenDeep(cards);
-}
-// console.log(createDeck(values));
-
 // This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
 findNumberOfAces = (contestantsHand, numberOfContestantsAces) => {
   let aces = contestantsHand.filter((number) => number === 11);
   numberOfContestantsAces = [...aces];
   return aces.length;
 };
-// This function will replace checkValue function
+// This function adds the total hand value and returns that number
 checkTotalHandValue = (playersHand) => {
   let total = playersHand.reduce((total, element) => total + element);
   let grandTotal = total;
   return grandTotal;
 };
 
-// This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard. This function will provide the single source of truth for all the hands. It will require a new array for player and dealer to push the adjusted total into and the checkForWinner function will recieve its number from here.
-
+// This function adust the value of ace depending on the total hand value and return the value of ace as 1 or 11.
 adjustHandTotalForAces = (handTotal, numberOfAces) => {
   if (numberOfAces === 0 && handTotal < 21) {
     return handTotal;
@@ -244,85 +210,3 @@ adjustHandTotalForAces = (handTotal, numberOfAces) => {
     return handTotal - 30;
   } else return handTotal;
 };
-// adjustHandTotalForAces = (handTotal, numberOfAces) => {
-//   if (numberOfAces.length === 0 && handTotal < 21) {
-//     return handTotal;
-//   } else if (numberOfAces.length === 1 && handTotal <= 21) {
-//     return handTotal;
-//   } else if (numberOfAces.length === 1 && handTotal > 21) {
-//     return handTotal - 10;
-//   } else if (numberOfAces.length === 2 && handTotal <= 21) {
-//     return handTotal - 10;
-//   } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
-//     return handTotal - 20;
-//   } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
-//     return handTotal - 10;
-//   } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
-//     return handTotal - 10;
-//   } else if (numberOfAces.length === 2 && handTotal > 21) {
-//     return handTotal - 20;
-//   } else if (numberOfAces.length === 3 && handTotal > 10) {
-//     return handTotal - 30;
-//   } else return handTotal;
-// };
-
-// findNumberOfAces(dealersTotal);
-// console.log(numberOfAces);
-// console.log(numberOfAces.length);
-
-// checkTotalHandValue(dealersTotal);
-// console.log(checkTotalHandValue(dealersTotal));
-// let totalDealersCount = checkTotalHandValue(dealersTotal);
-// adjustHandTotalForAces(totalDealersCount);
-
-// FUNCTIONS THAT HAVE BEEN REMOVED FROM USE
-
-// Function checks for double Aces
-// function checkForDoubleAces(contestant, handValue) {
-//   if (contestant.length === 2 && handValue >= 22) {
-//     return handValue - 10;
-//   } else if (contestant.length > 2 && handValue > 10) {
-//     return console.log(handValue - 10);
-//   }
-// }
-
-// Function disables hit me button if dealer has more than 16
-// function disableDealerHitMeBtn(dealersHandTotal, playersHandTotal) {
-//   if (dealersHandTotal >= 16 && playersHandTotal <= 21) {
-//     let hitMeButton = document.getElementById("dealer");
-//     // hitMeButton.disabled = true;
-//     console.log(compareHands());
-//     createPlayAgainBtn();
-//   }
-// }
-
-// function compareHands() {
-//   let playersHandTotal = checkTotalHandValue(playersHand);
-//   let dealersHandTotal = checkTotalHandValue(dealersHand);
-//   if (playersHandTotal === dealersHandTotal) {
-//     return " Draw!";
-//   } else if (playersHandTotal < dealersHandTotal && dealersHandTotal < 22) {
-//     return dealersHandTotal + " Dealer Wins!";
-//   } else if (playersHandTotal > dealersHandTotal && playersHandTotal < 22) {
-//     return playersHandTotal + " Player Wins!";
-//   }
-// }
-
-// function dealNewCard(event) {
-//   event.preventDefault();
-//   const dealer = "dealer";
-//   const player = "player";
-
-//   let nextPlayerCard = shuffledDeck.shift();
-//   let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
-
-//   let nextDealerCard = shuffledDeck.shift();
-//   let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
-
-//   dealersHand.push(nextDealerCardValue);
-//   playersHand.push(nextPlayerCardValue);
-
-//   renderNextCard(nextPlayerCard, player);
-//   renderNextCard(nextDealerCard, dealer);
-//   createPlayerHitMeBtn();
-// }

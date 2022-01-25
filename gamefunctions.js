@@ -92,14 +92,7 @@ function handleDealer(event) {
     playersHandTotal,
     playersAces
   );
-  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
-  //     dealersHandTotal,
-  //     numberOfAcesDealer
-  //   );
-  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
-  //     playersHandTotal,
-  //     numberOfAcesPlayer
-  //   );
+
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);
 
@@ -121,12 +114,6 @@ function dealNewPlayerCard(event) {
 
   let playersHandTotal = checkTotalHandValue(playersHand);
 
-  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
-
-  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
-  //     playersHandTotal,
-  //     numberOfAcesPlayer
-  //   );
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
@@ -135,54 +122,19 @@ function dealNewPlayerCard(event) {
 
   checkForWinner(adjustedPlayersHandTotal, player);
 
-  createPlayAgainBtn(playersHandTotal);
-  if (playersHandTotal > 21) {
+  createPlayAgainBtn(adjustedPlayersHandTotal);
+  if (adjustedPlayersHandTotal > 21) {
     let hitMeButton = document.getElementById("hit-me");
     hitMeButton.disabled = true;
   }
 }
-
-// function playerHold() {
-//   const dealer = "dealer";
-//   const player = "player";
-//   let hitMeButton = document.getElementById("hit-me");
-//   hitMeButton.disabled = true;
-//   let dealersHandTotal = checkTotalHandValue(dealersHand);
-//   let playersHandTotal = checkTotalHandValue(playersHand);
-//   findNumberOfAces(playersHand, numberOfAcesPlayer);
-//   findNumberOfAces(dealersHand, numberOfAcesDealer);
-//   let adjustedDealersHandTotal = adjustHandTotalForAces(
-//     dealersHandTotal,
-//     numberOfAcesDealer
-//   );
-//   let adjustedPlayersHandTotal = adjustHandTotalForAces(
-//     playersHandTotal,
-//     numberOfAcesPlayer
-//   );
-//   checkForWinner(adjustedDealersHandTotal, dealer);
-//   checkForWinner(adjustedPlayersHandTotal, player);
-
-//   //   dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
-//   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
-//     return playerHold();
-//   }
-// }
 
 function playerHold() {
   let hitMeButton = document.getElementById("hit-me");
   hitMeButton.disabled = true;
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
-  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
-  //   findNumberOfAces(dealersHand, numberOfAcesDealer);
-  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
-  //     dealersHandTotal,
-  //     numberOfAcesDealer
-  //   );
-  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
-  //     playersHandTotal,
-  //     numberOfAcesPlayer
-  //   );
+
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
   let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
   let adjustedDealersHandTotal = adjustHandTotalForAces(
@@ -193,8 +145,7 @@ function playerHold() {
     playersHandTotal,
     playersAces
   );
-  //   console.log(adjustedDealersHandTotal);
-  //   console.log(adjustedPlayersHandTotal);
+
   dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
     return playerHold();
@@ -213,19 +164,6 @@ function dealNewDealerCard() {
 
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
-
-  //   findNumberOfAces(dealersHand, numberOfAcesDealer);
-  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
-
-  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
-  //     dealersHandTotal,
-  //     numberOfAcesDealer
-  //   );
-
-  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
-  //     playersHandTotal,
-  //     numberOfAcesPlayer
-  //   );
 
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
   let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
