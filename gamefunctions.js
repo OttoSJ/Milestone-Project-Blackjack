@@ -55,7 +55,7 @@ const dealersHand = [];
 const numberOfAcesDealer = [];
 const deck = getDeck(values);
 const shuffledDeck = shuffle(deck);
-console.log(shuffledDeck);
+// console.log(shuffledDeck);
 
 // I hate how repetive this function is!!!!!!!
 function handleDealer(event) {
@@ -82,14 +82,24 @@ function handleDealer(event) {
   createCard(secondDealerCard, dealer);
   findNumberOfAces(playersHand, numberOfAcesPlayer);
   findNumberOfAces(dealersHand, numberOfAcesDealer);
+  let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+  let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
-    numberOfAcesDealer
+    dealerAces
   );
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
-    numberOfAcesPlayer
+    playersAces
   );
+  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
+  //     dealersHandTotal,
+  //     numberOfAcesDealer
+  //   );
+  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
+  //     playersHandTotal,
+  //     numberOfAcesPlayer
+  //   );
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);
 
@@ -111,11 +121,16 @@ function dealNewPlayerCard(event) {
 
   let playersHandTotal = checkTotalHandValue(playersHand);
 
-  findNumberOfAces(playersHand, numberOfAcesPlayer);
+  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
 
+  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
+  //     playersHandTotal,
+  //     numberOfAcesPlayer
+  //   );
+  let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
-    numberOfAcesPlayer
+    playersAces
   );
 
   checkForWinner(adjustedPlayersHandTotal, player);
@@ -158,20 +173,30 @@ function playerHold() {
   hitMeButton.disabled = true;
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
-  findNumberOfAces(playersHand, numberOfAcesPlayer);
-  findNumberOfAces(dealersHand, numberOfAcesDealer);
+  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
+  //   findNumberOfAces(dealersHand, numberOfAcesDealer);
+  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
+  //     dealersHandTotal,
+  //     numberOfAcesDealer
+  //   );
+  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
+  //     playersHandTotal,
+  //     numberOfAcesPlayer
+  //   );
+  let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+  let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
-    numberOfAcesDealer
+    dealerAces
   );
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
-    numberOfAcesPlayer
+    playersAces
   );
-  console.log(adjustedDealersHandTotal);
-  console.log(adjustedPlayersHandTotal);
-  dealer(dealersHandTotal, playersHandTotal);
-  if (dealersHandTotal < playersHandTotal) {
+  //   console.log(adjustedDealersHandTotal);
+  //   console.log(adjustedPlayersHandTotal);
+  dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
+  if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
     return playerHold();
   }
 }
@@ -181,7 +206,6 @@ function dealNewDealerCard() {
   const player = "player";
   let nextDealerCard = shuffledDeck.shift();
   let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
-  console.log("newDealer card clicked");
 
   dealersHand.push(nextDealerCardValue);
 
@@ -190,17 +214,28 @@ function dealNewDealerCard() {
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
-  findNumberOfAces(dealersHand, numberOfAcesDealer);
-  findNumberOfAces(playersHand, numberOfAcesPlayer);
+  //   findNumberOfAces(dealersHand, numberOfAcesDealer);
+  //   findNumberOfAces(playersHand, numberOfAcesPlayer);
 
+  //   let adjustedDealersHandTotal = adjustHandTotalForAces(
+  //     dealersHandTotal,
+  //     numberOfAcesDealer
+  //   );
+
+  //   let adjustedPlayersHandTotal = adjustHandTotalForAces(
+  //     playersHandTotal,
+  //     numberOfAcesPlayer
+  //   );
+
+  let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+  let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
-    numberOfAcesDealer
+    dealerAces
   );
-
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
-    numberOfAcesPlayer
+    playersAces
   );
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);

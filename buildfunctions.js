@@ -212,7 +212,7 @@ function createDeck(arr) {
 findNumberOfAces = (contestantsHand, numberOfContestantsAces) => {
   let aces = contestantsHand.filter((number) => number === 11);
   numberOfContestantsAces = [...aces];
-  return console.log(aces);
+  return aces.length;
 };
 // This function will replace checkValue function
 checkTotalHandValue = (playersHand) => {
@@ -224,26 +224,47 @@ checkTotalHandValue = (playersHand) => {
 // This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard. This function will provide the single source of truth for all the hands. It will require a new array for player and dealer to push the adjusted total into and the checkForWinner function will recieve its number from here.
 
 adjustHandTotalForAces = (handTotal, numberOfAces) => {
-  if (numberOfAces.length === 0) {
+  if (numberOfAces === 0 && handTotal < 21) {
     return handTotal;
-  } else if (numberOfAces.length === 1 && handTotal <= 21) {
+  } else if (numberOfAces === 1 && handTotal <= 21) {
     return handTotal;
-  } else if (numberOfAces.length === 1 && handTotal > 21) {
+  } else if (numberOfAces === 1 && handTotal > 21) {
     return handTotal - 10;
-  } else if (numberOfAces.length === 2 && handTotal <= 21) {
+  } else if (numberOfAces === 2 && handTotal <= 21) {
     return handTotal - 10;
-  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
+  } else if (numberOfAces + playersHand.length === 5 && handTotal > 31) {
     return handTotal - 20;
-  } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
+  } else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
     return handTotal - 10;
-  } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
+  } else if (numberOfAces + playersHand.length === 6 && handTotal < 32) {
     return handTotal - 10;
-  } else if (numberOfAces.length === 2 && handTotal > 21) {
+  } else if (numberOfAces === 2 && handTotal > 21) {
     return handTotal - 20;
-  } else if (numberOfAces.length === 3 && handTotal > 10) {
+  } else if (numberOfAces === 3 && handTotal > 10) {
     return handTotal - 30;
-  } else return handTotal - 40;
+  } else return handTotal;
 };
+// adjustHandTotalForAces = (handTotal, numberOfAces) => {
+//   if (numberOfAces.length === 0 && handTotal < 21) {
+//     return handTotal;
+//   } else if (numberOfAces.length === 1 && handTotal <= 21) {
+//     return handTotal;
+//   } else if (numberOfAces.length === 1 && handTotal > 21) {
+//     return handTotal - 10;
+//   } else if (numberOfAces.length === 2 && handTotal <= 21) {
+//     return handTotal - 10;
+//   } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 31) {
+//     return handTotal - 20;
+//   } else if (numberOfAces.length + playersHand.length === 5 && handTotal > 21) {
+//     return handTotal - 10;
+//   } else if (numberOfAces.length + playersHand.length === 6 && handTotal < 32) {
+//     return handTotal - 10;
+//   } else if (numberOfAces.length === 2 && handTotal > 21) {
+//     return handTotal - 20;
+//   } else if (numberOfAces.length === 3 && handTotal > 10) {
+//     return handTotal - 30;
+//   } else return handTotal;
+// };
 
 // findNumberOfAces(dealersTotal);
 // console.log(numberOfAces);
