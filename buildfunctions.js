@@ -111,7 +111,7 @@ function createPlayAgainBtn(HandTotal) {
   if (HandTotal > 21) {
     let playAgainBtn = document.createElement("button");
     playAgainBtn.setAttribute("class", "play-again-btn");
-    playAgainBtn.setAttribute("onclick", "testFunction()");
+    playAgainBtn.setAttribute("onclick", "handleReset()");
     playAgainBtn.textContent = "Play Again";
     document.body.append(playAgainBtn);
     let holdButton = document.querySelector(".hold");
@@ -122,7 +122,7 @@ function createPlayAgainBtn(HandTotal) {
 function createPlayAgainBtnDealer() {
   let playAgainBtn = document.createElement("button");
   playAgainBtn.setAttribute("class", "play-again-btn");
-  playAgainBtn.setAttribute("onclick", "testFunction()");
+  playAgainBtn.setAttribute("onclick", "handleReset()");
   playAgainBtn.textContent = "Play Again";
   document.body.append(playAgainBtn);
   let holdButton = document.querySelector(".hold");

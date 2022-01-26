@@ -18,6 +18,13 @@ const values = [
   "K",
 ];
 
+const playersHand = [];
+const numberOfAcesPlayer = [];
+const dealersHand = [];
+const numberOfAcesDealer = [];
+const deck = getDeck(values);
+const shuffledDeck = shuffle(deck);
+
 // Function to create deck of cards
 function getDeck() {
   let deck = new Array();
@@ -31,7 +38,6 @@ function getDeck() {
 
   return deck;
 }
-// console.log(getDeck(values))
 
 // Function to shuffle cards
 function shuffle(deck) {
@@ -48,14 +54,6 @@ function shuffle(deck) {
 }
 
 // Function to deal player card from top of deck with dealer function inside
-
-const playersHand = [];
-const numberOfAcesPlayer = [];
-const dealersHand = [];
-const numberOfAcesDealer = [];
-const deck = getDeck(values);
-const shuffledDeck = shuffle(deck);
-// console.log(shuffledDeck);
 
 // I hate how repetive this function is!!!!!!!
 function handleDealer(event) {
@@ -197,23 +195,24 @@ function dealNewDealerCard() {
 
 function handleReset() {
   let hitMeButton = document.getElementById("hit-me");
-
-  let playerEl = document.getElementsByClassName("player-card-container")[0];
-  playerEl.remove();
-
-  let dealerEl = document.getElementsByClassName("dealer-card-container")[0];
-  dealerEl.remove();
-
-  holdButton = document.createElement("button");
-  holdButton.setAttribute("class", "cover-hold");
-  document.body.append(holdButton);
-
   hitMeButton.remove();
+
+  let holdBtn = document.getElementById("hold");
+
+  let playAgainBtn = document.querySelectorAll(".play-again-btn")[0];
+  const deleteBtn = playAgainBtn ? playAgainBtn.remove() : holdBtn.remove();
+
+  let el = document.querySelectorAll(".card");
+  for (let i = 0; i < el.length; i++) {
+    el[i].remove();
+  }
+
   playersHand.length = 0;
   dealersHand.length = 0;
-
-  // I will need to create these two containers again here in this div and then it should be good.
-  // Also need to figure out a better solution for the deck of cards. I'm thinking wrap the deck and the dealer container in a div and make them a row so that the deck is left of the dealers cards instead on top. This means that I will need to append the dealer div to a different container (the new one).
-  // <div class="dealer-card-container"></div>
-  //     <div class="player-card-container"></div>
 }
+
+// TO DO LIST
+
+// Need to add a messeges function that will be invoked inside of the playerHold function. It should display the winner of the game.
+
+// Need to create an array of messeges to display
