@@ -43,7 +43,7 @@ function getDeck() {
 
   return deck;
 }
-
+console.log(deck);
 // Function to shuffle cards
 function shuffle(deck) {
   for (let i = 0; i < 1000; i++) {
@@ -249,3 +249,9 @@ function handleReset() {
 
 // Need to fix bug that causes -10 when there are 5 cards and no aces and over 21. Here is the line in the function that needs to be rethought (else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
 // return handTotal - 10;). The problem is that its looking for the total of 5 cards which doesn't have include anything from the aces count
+
+// Need to work on Media for smaller devices. Make sure to account for screen to be turned sideways as well.
+
+// Need to add a feature that checks and creates another deck once the current deck is near epmty. It should be added to the play again button which is called be the handleReset function.
+
+// Need to add read me file. Find info on the internet and use some of what you find.
