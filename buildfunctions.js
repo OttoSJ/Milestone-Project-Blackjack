@@ -160,6 +160,13 @@ function checkForWinner(contestentsHand, contestant) {
   } else console.log(contestentsHand, contestant);
 }
 
+function displayScore(dealersHand, playersHand) {
+  let dealerMessege = document.querySelectorAll(".dealer-score-messege")[0];
+  let playerMessege = document.querySelectorAll(".player-score-messege")[0];
+  dealerMessege.textContent = `Dealers Score ${dealersHand}`;
+  playerMessege.textContent = `Player Score ${playersHand} `;
+}
+
 function testFunction() {
   console.log("testing");
 }
@@ -200,6 +207,18 @@ adjustHandTotalForAces = (handTotal, numberOfAces) => {
   } else return handTotal;
 };
 
+function checkForWinnerMessege(
+  adjustedDealersHandTotal,
+  adjustedPlayersHandTotal
+) {
+  const messegesContainer = document.querySelectorAll(".messeges")[0];
+  if (adjustedDealersHandTotal > 21) {
+    return (messegesContainer.textContent = "Player Wins!!");
+  } else if (adjustedDealersHandTotal === adjustedPlayersHandTotal) {
+    return (messegesContainer.textContent = "Draw");
+  } else adjustedDealersHandTotal > adjustedPlayersHandTotal;
+  return (messegesContainer.textContent = "Dealer Wins!");
+}
 // This is just a helper function that lets me know that a button is woring or another function is exucuting correctly
 function testFunction() {
   console.log("testing");

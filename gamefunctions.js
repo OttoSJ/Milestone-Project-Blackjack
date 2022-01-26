@@ -18,6 +18,11 @@ const values = [
   "K",
 ];
 
+const messeges = {
+  dealerWins: "Dealer Wins!",
+  playerWins: "Player Wins!!l",
+};
+
 const playersHand = [];
 const numberOfAcesPlayer = [];
 const dealersHand = [];
@@ -97,6 +102,7 @@ function handleDealer(event) {
     dealersHandTotal,
     dealerAces
   );
+
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
     playersAces
@@ -104,6 +110,8 @@ function handleDealer(event) {
 
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);
+
+  displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 
   createHoldButton();
   createPlayerHitMeBtn();
@@ -121,21 +129,32 @@ function dealNewPlayerCard(event) {
   renderNextCard(nextPlayerCard, player);
 
   let playersHandTotal = checkTotalHandValue(playersHand);
+  let dealersHandTotal = checkTotalHandValue(dealersHand);
 
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
-
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
     playersAces
   );
 
+  let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
+  let adjustedDealersHandTotal = adjustHandTotalForAces(
+    dealersHandTotal,
+    dealerAces
+  );
+
   checkForWinner(adjustedPlayersHandTotal, player);
+
+  displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 
   createPlayAgainBtn(adjustedPlayersHandTotal);
 
   if (adjustedPlayersHandTotal > 21) {
     let hitMeButton = document.getElementById("hit-me");
     hitMeButton.disabled = true;
+
+    let messege = document.querySelectorAll(".messeges")[0];
+    messege.textContent = "Dealer Wins!";
   }
 }
 
@@ -163,6 +182,8 @@ function playerHold() {
   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
     return playerHold();
   }
+
+  checkForWinnerMessege(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 }
 
 function dealNewDealerCard() {
@@ -191,6 +212,8 @@ function dealNewDealerCard() {
   );
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);
+
+  displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 }
 
 function handleReset() {
@@ -200,6 +223,15 @@ function handleReset() {
   let holdBtn = document.getElementById("hold");
 
   let playAgainBtn = document.querySelectorAll(".play-again-btn")[0];
+
+  let messege = document.querySelectorAll(".messeges")[0];
+  messege.textContent = "";
+
+  let dealerMessege = document.querySelectorAll(".dealer-score-messege")[0];
+  let playerMessege = document.querySelectorAll(".player-score-messege")[0];
+  dealerMessege.textContent = ``;
+  playerMessege.textContent = ``;
+
   const deleteBtn = playAgainBtn ? playAgainBtn.remove() : holdBtn.remove();
 
   let el = document.querySelectorAll(".card");
@@ -213,6 +245,7 @@ function handleReset() {
 
 // TO DO LIST
 
-// Need to add a messeges function that will be invoked inside of the playerHold function. It should display the winner of the game.
-
 // Need to create an array of messeges to display
+
+// Need to fix bug that causes -10 when there are 5 cards and no aces and over 21. Here is the line in the function that needs to be rethought (else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
+// return handTotal - 10;). The problem is that its looking for the total of 5 cards which doesn't have include anything from the aces count
