@@ -245,8 +245,6 @@ function handleReset() {
 
 // TO DO LIST
 
-// Need to create an array of messeges to display
-
 // Need to fix bug that causes -10 when there are 5 cards and no aces and over 21. Here is the line in the function that needs to be rethought (else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
 // return handTotal - 10;). The problem is that its looking for the total of 5 cards which doesn't have include anything from the aces count
 
