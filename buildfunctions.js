@@ -164,17 +164,6 @@ function testFunction() {
   console.log("testing");
 }
 
-// NEED TO FIGURE OUT THIS FUNCTION NEXT ***************************************************************
-function dealerHolds(dealersHandTotal) {
-  let handTotal = `${dealersHandTotal}`;
-  if (handTotal > 15 && handTotal < 22) {
-    createPlayerHitMeBtn();
-    document.getElementById("hit-me").style.zIndex = 4;
-    return console.log("Dealer is at or over 16");
-  } else createPlayerDealerHitMeBtn();
-  console.log("dealer is under 17");
-}
-
 // This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
 findNumberOfAces = (contestantsHand, numberOfContestantsAces) => {
   let aces = contestantsHand.filter((number) => number === 11);
@@ -210,3 +199,8 @@ adjustHandTotalForAces = (handTotal, numberOfAces) => {
     return handTotal - 30;
   } else return handTotal;
 };
+
+// This is just a helper function that lets me know that a button is woring or another function is exucuting correctly
+function testFunction() {
+  console.log("testing");
+}

@@ -80,7 +80,9 @@ body {
 }
 
 .player-card-value,
-.dealer-card-value {
+.dealer-card-value,
+.player-cards-value,
+.dealer-cards-value {
   font-size: 130%;
   display: flex;
   height: 10%;

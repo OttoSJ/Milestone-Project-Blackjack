@@ -19,3 +19,13 @@ function firstHand(shuffledDeck) {
   }
   return hand;
 }
+
+function dealerHolds(dealersHandTotal) {
+  let handTotal = `${dealersHandTotal}`;
+  if (handTotal > 15 && handTotal < 22) {
+    createPlayerHitMeBtn();
+    document.getElementById("hit-me").style.zIndex = 4;
+    return console.log("Dealer is at or over 16");
+  } else createPlayerDealerHitMeBtn();
+  console.log("dealer is under 17");
+}

@@ -67,12 +67,19 @@ function handleDealer(event) {
   let secondPlayerCard = shuffledDeck.shift();
   let firstDealerCard = shuffledDeck.shift();
   let secondDealerCard = shuffledDeck.shift();
+
   let firstPlayerCardValue = getFaceCardValue(firstPlayerCard.Value);
+
   let secondPlayerCardValue = getFaceCardValue(secondPlayerCard.Value);
+
   let firstDealerCardValue = getFaceCardValue(firstDealerCard.Value);
+
   let secondDealerCardValue = getFaceCardValue(secondDealerCard.Value);
+
   playersHand.push(firstPlayerCardValue, secondPlayerCardValue);
+
   dealersHand.push(firstDealerCardValue, secondDealerCardValue);
+
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
@@ -80,10 +87,14 @@ function handleDealer(event) {
   createCard(secondPlayerCard, player);
   createCard(firstDealerCard, dealer);
   createCard(secondDealerCard, dealer);
+
   findNumberOfAces(playersHand, numberOfAcesPlayer);
   findNumberOfAces(dealersHand, numberOfAcesDealer);
+
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+
   let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
+
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
     dealerAces
@@ -109,12 +120,12 @@ function dealNewPlayerCard(event) {
   let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
 
   playersHand.push(nextPlayerCardValue);
-
   renderNextCard(nextPlayerCard, player);
 
   let playersHandTotal = checkTotalHandValue(playersHand);
 
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+
   let adjustedPlayersHandTotal = adjustHandTotalForAces(
     playersHandTotal,
     playersAces
@@ -123,6 +134,7 @@ function dealNewPlayerCard(event) {
   checkForWinner(adjustedPlayersHandTotal, player);
 
   createPlayAgainBtn(adjustedPlayersHandTotal);
+
   if (adjustedPlayersHandTotal > 21) {
     let hitMeButton = document.getElementById("hit-me");
     hitMeButton.disabled = true;
@@ -132,11 +144,14 @@ function dealNewPlayerCard(event) {
 function playerHold() {
   let hitMeButton = document.getElementById("hit-me");
   hitMeButton.disabled = true;
+
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+
   let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
+
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
     dealerAces
@@ -159,14 +174,15 @@ function dealNewDealerCard() {
   let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
 
   dealersHand.push(nextDealerCardValue);
-
   renderNextCard(nextDealerCard, dealer);
 
   let dealersHandTotal = checkTotalHandValue(dealersHand);
   let playersHandTotal = checkTotalHandValue(playersHand);
 
   let playersAces = findNumberOfAces(playersHand, numberOfAcesPlayer);
+
   let dealerAces = findNumberOfAces(dealersHand, numberOfAcesDealer);
+
   let adjustedDealersHandTotal = adjustHandTotalForAces(
     dealersHandTotal,
     dealerAces
@@ -180,17 +196,14 @@ function dealNewDealerCard() {
 }
 
 function handleReset() {
-  //   let el = document.getElementsByClassName("card");
   let hitMeButton = document.getElementById("hit-me");
-  //   console.log(el.length);
-  //   if (el.length > 0) {
-  //     el.romove();
-  //     handleReset();
-  //   }
-  //   for (let i = 0; i < el.length; i++) {
-  //     el.remove();
-  //   }
-  // Need to figure out a better solution for hiding this button. This creates a button everytime this has to run to delete the cards
+
+  let playerEl = document.getElementsByClassName("player-card-container")[0];
+  playerEl.remove();
+
+  let dealerEl = document.getElementsByClassName("dealer-card-container")[0];
+  dealerEl.remove();
+
   holdButton = document.createElement("button");
   holdButton.setAttribute("class", "cover-hold");
   document.body.append(holdButton);
@@ -198,4 +211,9 @@ function handleReset() {
   hitMeButton.remove();
   playersHand.length = 0;
   dealersHand.length = 0;
+
+  // I will need to create these two containers again here in this div and then it should be good.
+  // Also need to figure out a better solution for the deck of cards. I'm thinking wrap the deck and the dealer container in a div and make them a row so that the deck is left of the dealers cards instead on top. This means that I will need to append the dealer div to a different container (the new one).
+  // <div class="dealer-card-container"></div>
+  //     <div class="player-card-container"></div>
 }
