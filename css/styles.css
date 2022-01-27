@@ -102,7 +102,7 @@ body {
   width: 4rem;
   text-align: center;
 }
-.cover-hold {
+/* .cover-hold {
   position: absolute;
   display: flex;
   bottom: 8rem;
@@ -113,7 +113,7 @@ body {
   background-color: rgb(42, 72, 42);
   border: transparent;
   z-index: 3;
-}
+} */
 
 /* #firsthand {
   z-index: 2;
@@ -151,5 +151,12 @@ body {
   .hold,
   .play-again-btn {
     bottom: 18rem;
+  }
+
+  .dealer-card-container {
+    margin-top: 40px;
+  }
+  .player-card-container {
+    margin-bottom: 20px;
   }
 }
