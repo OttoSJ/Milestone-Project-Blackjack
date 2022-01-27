@@ -81,11 +81,13 @@ body {
 .deal-card {
   position: absolute;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 1.5rem;
   bottom: 5rem;
   left: 1rem;
   width: 4rem;
-  text-align: center;
 }
 
 .hold,
@@ -110,9 +112,9 @@ body {
   z-index: 3;
 }
 
-#firsthand {
+/* #firsthand {
   z-index: 2;
-}
+} */
 
 .messeges {
   position: relative;

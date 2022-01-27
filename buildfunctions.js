@@ -89,13 +89,13 @@ function createHitMeBtn(contestant, buttonColor, clickFunction) {
   main.append(button);
 }
 
-function createDealerHitMeBtn() {
-  let dealersHandTotal = checkTotalHandValue(dealersHand);
-  if (dealersHandTotal < 17) {
-    return createHitMeBtn("dealer", "red", "dealNewDealerCard()");
-    // console.log("dealer under 17 creating new dealer hit me botton");
-  } else return console.log("dealer holds");
-}
+// function createDealerHitMeBtn() {
+//   let dealersHandTotal = checkTotalHandValue(dealersHand);
+//   if (dealersHandTotal < 17) {
+//     return createHitMeBtn("dealer", "red", "dealNewDealerCard()");
+//     // console.log("dealer under 17 creating new dealer hit me botton");
+//   } else return console.log("dealer holds");
+// }
 
 function createHoldButton() {
   let holdButton = document.createElement("button");
