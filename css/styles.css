@@ -81,6 +81,7 @@ body {
 .deal-card {
   position: absolute;
   display: flex;
+  height: 1.5rem;
   bottom: 5rem;
   left: 1rem;
   width: 4rem;
@@ -126,17 +127,24 @@ body {
   color: rgb(181, 184, 184);
 }
 
-@media (min-width: 300px) {
+@media (max-width: 600px) {
   body {
     height: 80vh;
     width: 90vw;
   }
-  /* .main {
-    position: relative;
-  } */
+
   .reset-game {
     position: relative;
     top: 16rem;
     left: 1rem;
+  }
+
+  .deal-card {
+    bottom: 15rem;
+  }
+
+  .hold,
+  .play-again-btn {
+    bottom: 18rem;
   }
 }
