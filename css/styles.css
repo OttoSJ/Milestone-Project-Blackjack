@@ -94,6 +94,9 @@ body {
 .play-again-btn {
   position: absolute;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   bottom: 8rem;
   left: 1rem;
   width: 4rem;
