@@ -121,19 +121,26 @@ body {
     width: 90vw;
   }
 
+  .messeges-container {
+    position: relative;
+    right: 2rem;
+  }
+
   .reset-game {
     position: relative;
     top: 16rem;
-    left: 1rem;
+    left: 17.8rem;
   }
 
   .deal-card {
     bottom: 15rem;
+    left: 18rem;
   }
 
   .hold,
   .play-again-btn {
     bottom: 18rem;
+    left: 18rem;
   }
 
   .dealer-card-container {
