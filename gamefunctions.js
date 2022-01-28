@@ -28,6 +28,7 @@ const numberOfAcesPlayer = [];
 const dealersHand = [];
 const numberOfAcesDealer = [];
 const deck = getDeck(values);
+// const deck = [];
 const shuffledDeck = shuffle(deck);
 
 // Function to create deck of cards
@@ -43,7 +44,7 @@ function getDeck() {
 
   return deck;
 }
-console.log(deck);
+
 // Function to shuffle cards
 function shuffle(deck) {
   for (let i = 0; i < 1000; i++) {
@@ -57,8 +58,6 @@ function shuffle(deck) {
   }
   return deck;
 }
-
-// Function to deal player card from top of deck with dealer function inside
 
 // I hate how repetive this function is!!!!!!!
 function handleDealer(event) {
@@ -253,3 +252,4 @@ function handleReset() {
 // Need to add a feature that checks and creates another deck once the current deck is near epmty. It should be added to the play again button which is called be the handleReset function.
 
 // Need to add read me file. Find info on the internet and use some of what you find.
+console.log(deck);

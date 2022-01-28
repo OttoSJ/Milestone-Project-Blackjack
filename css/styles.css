@@ -19,7 +19,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  /* border: 1px solid grey; */
 }
 
 .dealer-card-container {
@@ -36,7 +35,7 @@ body {
   background-color: rgb(225, 222, 222);
   width: 6rem;
   height: 9rem;
-  /* border: 3px solid black; */
+
   border-radius: 5%;
 }
 
@@ -48,13 +47,13 @@ body {
   border-radius: 10%;
   width: 6rem;
   height: 9rem;
+  margin-left: -12px;
 }
 
 .player-suit,
 .dealer-suit {
   width: 4rem;
   height: 4rem;
-  /* color: red; */
 }
 
 .player-suit-container,
@@ -102,22 +101,6 @@ body {
   width: 4rem;
   text-align: center;
 }
-/* .cover-hold {
-  position: absolute;
-  display: flex;
-  bottom: 8rem;
-  left: 1rem;
-  height: 3rem;
-  width: 4rem;
-  text-align: center;
-  background-color: rgb(42, 72, 42);
-  border: transparent;
-  z-index: 3;
-} */
-
-/* #firsthand {
-  z-index: 2;
-} */
 
 .messeges {
   position: relative;
@@ -132,7 +115,7 @@ body {
   color: rgb(181, 184, 184);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 375px) and (max-width: 600px) {
   body {
     height: 80vh;
     width: 90vw;
@@ -154,9 +137,74 @@ body {
   }
 
   .dealer-card-container {
+    justify-content: center;
+    flex-direction: row;
     margin-top: 40px;
   }
   .player-card-container {
     margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .main {
+    position: relative;
+  }
+  .main-container {
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .player-card-container,
+  .dealer-card-container {
+    margin: 2px;
+    margin-bottom: 2px;
+  }
+  .dealer-card-container {
+    position: relative;
+    left: 8.5px;
+  }
+  .player-card-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: -30px;
+  }
+
+  .deal-card {
+    position: absolute;
+    bottom: 3rem;
+    left: 35rem;
+  }
+
+  .play-again-btn,
+  .hold {
+    position: absolute;
+    left: 35.5rem;
+  }
+
+  .messeges-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    right: 2rem;
+    bottom: 19rem;
+  }
+  .messeges {
+    font-size: 100%;
+    color: rgb(181, 184, 184);
+    width: 4rem;
+
+    text-align: center;
+    top: 0rem;
+  }
+
+  .dealer-score-messege,
+  .player-score-messege {
+    font-size: 80%;
+    color: rgb(181, 184, 184);
+    width: 3rem;
+    text-align: center;
   }
 }

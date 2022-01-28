@@ -163,7 +163,7 @@ function checkForWinner(contestentsHand, contestant) {
 function displayScore(dealersHand, playersHand) {
   let dealerMessege = document.querySelectorAll(".dealer-score-messege")[0];
   let playerMessege = document.querySelectorAll(".player-score-messege")[0];
-  dealerMessege.textContent = `Dealers Score ${dealersHand}`;
+  dealerMessege.textContent = `Dealer Score ${dealersHand}`;
   playerMessege.textContent = `Player Score ${playersHand} `;
 }
 
