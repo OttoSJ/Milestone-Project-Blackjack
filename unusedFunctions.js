@@ -1,12 +1,14 @@
 // Need to switch out this function with the one I found. Mine works now!!
 
-function createDeck(arr) {
-  let cards = [];
-  for (let i = 0; i < 4; i++) {
-    let card = arr.map((value) => ({ Suit: suits[i], Value: value }));
-    cards[i] = [...card];
+function getNewDeck(values) {
+  unshuffled = [];
+  for (let i = 0; i < suits.length; i++) {
+    for (let x = 0; x < values.length; x++) {
+      let card = { Value: values[x], Suit: suits[i] };
+      unshuffled.push(card);
+      shuffledDeck = [...shuffle(unshuffled)];
+    }
   }
-  return _.flattenDeep(cards);
 }
 
 function firstHand(shuffledDeck) {

@@ -31,13 +31,12 @@ let shuffledDeck = [];
 
 // Function to create deck of cards
 function getNewDeck(values) {
-  unshuffled = [];
-  for (let i = 0; i < suits.length; i++) {
-    for (let x = 0; x < values.length; x++) {
-      let card = { Value: values[x], Suit: suits[i] };
-      unshuffled.push(card);
-      shuffledDeck = [...shuffle(unshuffled)];
-    }
+  let cards = [];
+  for (let i = 0; i < 4; i++) {
+    let card = values.map((value) => ({ Suit: suits[i], Value: value }));
+    cards[i] = [...card];
+    _.flattenDeep(cards);
+    shuffledDeck = [...shuffle(_.flattenDeep(cards))];
   }
 }
 
@@ -197,6 +196,7 @@ function playerHold() {
     return playerHold();
   }
 
+  //   getRunningTotal(adjustedDealersHandTotal);
   checkForWinnerMessege(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 }
 

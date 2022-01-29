@@ -89,14 +89,6 @@ function createHitMeBtn(contestant, buttonColor, clickFunction) {
   main.append(button);
 }
 
-// function createDealerHitMeBtn() {
-//   let dealersHandTotal = checkTotalHandValue(dealersHand);
-//   if (dealersHandTotal < 17) {
-//     return createHitMeBtn("dealer", "red", "dealNewDealerCard()");
-//     // console.log("dealer under 17 creating new dealer hit me botton");
-//   } else return console.log("dealer holds");
-// }
-
 function createHoldButton() {
   let holdButton = document.createElement("button");
   holdButton.setAttribute("class", "hold");
@@ -167,10 +159,6 @@ function displayScore(dealersHand, playersHand) {
   playerMessege.textContent = `Player Score ${playersHand} `;
 }
 
-function testFunction() {
-  console.log("testing");
-}
-
 // This function will be called once for each player in handleDealer, dealNewPlayerCard and dealNewDealerCard
 findNumberOfAces = (contestantsHand, numberOfContestantsAces) => {
   let aces = contestantsHand.filter((number) => number === 11);
@@ -213,13 +201,23 @@ function checkForWinnerMessege(
 ) {
   const messegesContainer = document.querySelectorAll(".messeges")[0];
   if (adjustedDealersHandTotal > 21) {
+    fakeHand++;
+    console.log(fakeHand);
     return (messegesContainer.textContent = "Player Wins!!");
   } else if (adjustedDealersHandTotal === adjustedPlayersHandTotal) {
     return (messegesContainer.textContent = "Draw");
   } else adjustedDealersHandTotal > adjustedPlayersHandTotal;
   return (messegesContainer.textContent = "Dealer Wins!");
 }
-// This is just a helper function that lets me know that a button is woring or another function is exucuting correctly
-function testFunction() {
-  console.log("testing");
+
+// This is the beggining of the function that will track the percentage of wins and loses. I can follow this logic for the dealer as well. I can use the function above as a template for the logic. See the function above as I've begun to add the logic to this function.
+
+let fakeHand = 0;
+function getRunningTotal(adjustedDealersHandTotal) {
+  if (adjustedDealersHandTotal > 21) {
+    fakeHand++;
+  }
+  return console.log(fakeHand);
 }
+console.log(fakeHand);
+// This is just a helper function that lets me know that a button is woring or another function is exucuting correctly
