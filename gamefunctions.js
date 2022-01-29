@@ -266,11 +266,14 @@ function handleReset() {
   dealersHand.length = 0;
 }
 
-// TO DO LIST
+// FUTURE TO DO LIST
 
-// Need to fix bug that causes -10 when there are 5 cards and no aces and over 21. Here is the line in the function that needs to be rethought (else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
-// return handTotal - 10;). The problem is that its looking for the total of 5 cards which doesn't have include anything from the aces count, thus once you get to five cards and the total is over the set amount it takes off 10.
+// Need to add running game stats like winning percentage. I can also build the betting off the this same logic.
 
-// Need to add a feature that checks and creates another deck once the current deck is near epmty. It should be added to the play again button which is called be the handleReset function.
+// Need to add betting feature
+// - Buttons to add amount to bet
+// - Add vitual wallet to track players money total
+// - Add set dollar amount the player starts with
+// -
 
-// Need to add read me file.
+// Need to add a condition the the handleReset function that checks for to see if the Play Again button is present so that when the resest button is pressed I don't get an error. The reset button should remove all buttons and add the deal button back to the sceen. It should also reset the running game stats back to zero.
