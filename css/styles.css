@@ -115,6 +115,38 @@ body {
   color: rgb(181, 184, 184);
 }
 
+.winning-percentage-number {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid grey; */
+  height: 4rem;
+  width: 6rem;
+}
+
+.winning-percentage-messege-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  right: -10rem;
+  bottom: 5rem;
+  height: 7rem;
+  width: 15rem;
+  font-size: 150%;
+  background-color: rgb(181, 184, 184);
+  border: 3px solid black;
+  margin-top: -0.7rem;
+}
+
+.winning-percentage-messege {
+  position: relative;
+  margin-bottom: -1rem;
+}
+
 @media (max-width: 375px) and (max-width: 600px) {
   body {
     height: 80vh;

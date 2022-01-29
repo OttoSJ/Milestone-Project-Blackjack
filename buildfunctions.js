@@ -103,12 +103,14 @@ function createPlayAgainBtn(HandTotal) {
   if (HandTotal > 21) {
     let playAgainBtn = document.createElement("button");
     playAgainBtn.setAttribute("class", "play-again-btn");
-    playAgainBtn.setAttribute("onclick", "handleReset()");
+    playAgainBtn.setAttribute(
+      "onclick",
+      "handleReset(), getWinningPercentage()"
+    );
     playAgainBtn.textContent = "Play Again";
     document.body.append(playAgainBtn);
     let holdButton = document.querySelector(".hold");
     holdButton.remove();
-    console.log(shuffledDeck.length);
   }
 }
 
@@ -144,13 +146,13 @@ function getFaceCardValue(element) {
 }
 
 // Function checks for winner. CHANGE NAME TO CHECK FOR WINNER
-function checkForWinner(contestentsHand, contestant) {
-  if (contestentsHand === 21) {
-    return console.log(contestentsHand, contestant, `Has Blackjack!`);
-  } else if (contestentsHand > 21) {
-    return console.log(contestentsHand, contestant, `Loses`);
-  } else console.log(contestentsHand, contestant);
-}
+// function checkForWinner(contestentsHand, contestant) {
+//   if (contestentsHand === 21) {
+//     return console.log(contestentsHand, contestant, `Has Blackjack!`);
+//   } else if (contestentsHand > 21) {
+//     return console.log(contestentsHand, contestant, `Loses`);
+//   } else console.log(contestentsHand, contestant);
+// }
 
 function displayScore(dealersHand, playersHand) {
   let dealerMessege = document.querySelectorAll(".dealer-score-messege")[0];
@@ -201,23 +203,26 @@ function checkForWinnerMessege(
 ) {
   const messegesContainer = document.querySelectorAll(".messeges")[0];
   if (adjustedDealersHandTotal > 21) {
-    fakeHand++;
-    console.log(fakeHand);
+    // numberOfGamesPlayed++;
+    numberOfPlayerWins++;
+    console.log(numberOfPlayerWins, "Player win total");
     return (messegesContainer.textContent = "Player Wins!!");
   } else if (adjustedDealersHandTotal === adjustedPlayersHandTotal) {
+    // numberOfGamesPlayed++;
+    numberOfPlayerWins++;
+    console.log(numberOfPlayerWins, "Player win total");
     return (messegesContainer.textContent = "Draw");
+    // numberOfGamesPlayed++;
   } else adjustedDealersHandTotal > adjustedPlayersHandTotal;
+  console.log(numberOfPlayerWins, "Player win total");
   return (messegesContainer.textContent = "Dealer Wins!");
 }
 
-// This is the beggining of the function that will track the percentage of wins and loses. I can follow this logic for the dealer as well. I can use the function above as a template for the logic. See the function above as I've begun to add the logic to this function.
-
-let fakeHand = 0;
-function getRunningTotal(adjustedDealersHandTotal) {
-  if (adjustedDealersHandTotal > 21) {
-    fakeHand++;
-  }
-  return console.log(fakeHand);
+// I need to figure out why if the player wins the first game that number isn't included in the winning
+function getWinningPercentage() {
+  let winningPercentageMessege = document.querySelectorAll(
+    ".winning-percentage-number"
+  )[0];
+  let winningPercentage = numberOfPlayerWins / numberOfGamesPlayed;
+  winningPercentageMessege.textContent = `${winningPercentage.toFixed(2)} %`;
 }
-console.log(fakeHand);
-// This is just a helper function that lets me know that a button is woring or another function is exucuting correctly

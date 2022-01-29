@@ -25,6 +25,8 @@ const messeges = {
 
 const playersHand = [];
 const numberOfAcesPlayer = [];
+let numberOfPlayerWins = 0;
+let numberOfGamesPlayed = 0;
 const dealersHand = [];
 const numberOfAcesDealer = [];
 let shuffledDeck = [];
@@ -42,7 +44,7 @@ function getNewDeck(values) {
 
 getNewDeck(values);
 console.log(shuffledDeck);
-console.log(shuffledDeck.length);
+// console.log(shuffledDeck.length);
 
 // Function to shuffle cards
 function shuffle(deck) {
@@ -63,6 +65,8 @@ function handleDealer(event) {
   event.preventDefault();
   const dealer = "dealer";
   const player = "player";
+  numberOfGamesPlayed++;
+  console.log(numberOfGamesPlayed, "Games Played");
 
   if (shuffledDeck.length < 4) {
     getNewDeck(values);
@@ -109,15 +113,15 @@ function handleDealer(event) {
     playersAces
   );
 
-  checkForWinner(adjustedDealersHandTotal, dealer);
-  checkForWinner(adjustedPlayersHandTotal, player);
+  //   checkForWinner(adjustedDealersHandTotal, dealer);
+  //   checkForWinner(adjustedPlayersHandTotal, player);
 
   displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 
   createHoldButton();
   createPlayerHitMeBtn();
 
-  console.log(shuffledDeck.length);
+  //   console.log(shuffledDeck.length);
 }
 
 function dealNewPlayerCard(event) {
@@ -149,9 +153,9 @@ function dealNewPlayerCard(event) {
     dealerAces
   );
 
-  console.log(shuffledDeck.length, "Cards left");
+  //   console.log(shuffledDeck.length, "Cards left");
 
-  checkForWinner(adjustedPlayersHandTotal, player);
+  //   checkForWinner(adjustedPlayersHandTotal, player);
 
   displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 
@@ -163,6 +167,8 @@ function dealNewPlayerCard(event) {
 
     let messege = document.querySelectorAll(".messeges")[0];
     messege.textContent = "Dealer Wins!";
+    console.log(numberOfGamesPlayed, "Games Played");
+    getWinningPercentage();
   }
 }
 
@@ -186,13 +192,17 @@ function playerHold() {
     playersAces
   );
 
+  getWinningPercentage();
+  console.log(numberOfGamesPlayed, "Games Played");
+
   if (shuffledDeck.length === 0) {
     getNewDeck(values);
   }
-  console.log(shuffledDeck.length);
+  //   console.log(shuffledDeck.length);
 
   dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
+    getWinningPercentage();
     return playerHold();
   }
 
@@ -229,10 +239,10 @@ function dealNewDealerCard() {
     playersAces
   );
 
-  console.log(shuffledDeck.length);
+  //   console.log(shuffledDeck.length);
 
-  checkForWinner(adjustedDealersHandTotal, dealer);
-  checkForWinner(adjustedPlayersHandTotal, player);
+  //   checkForWinner(adjustedDealersHandTotal, dealer);
+  //   checkForWinner(adjustedPlayersHandTotal, player);
 
   displayScore(adjustedDealersHandTotal, adjustedPlayersHandTotal);
 }
