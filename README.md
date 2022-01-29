@@ -31,6 +31,10 @@ The winner of the round is whoever has the highest hand without going bust.
 
 - ENJOY THE GAME!!!
 
-Card design is form esty.com and is free for commercial use!
+- Game can be found here.
+https://ottosj.github.io/Milestone-Project-Blackjack/
+
+
+- Card design is form esty.com and is free for commercial use!
 
 https://www.etsy.com/listing/1059152611/card-suits-svg?click_key=951c871b7b448b8c6a66b49190e76da39ffbb3bd%3A1059152611&click_sum=5d7395f5&ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=playing+cards+svg&ref=sr_gallery-1-17
