@@ -27,23 +27,23 @@ const playersHand = [];
 const numberOfAcesPlayer = [];
 const dealersHand = [];
 const numberOfAcesDealer = [];
-const deck = getDeck(values);
-// const deck = [];
-const shuffledDeck = shuffle(deck);
+let shuffledDeck = [];
 
 // Function to create deck of cards
-function getDeck() {
-  let deck = new Array();
-
+function getNewDeck(values) {
+  unshuffled = [];
   for (let i = 0; i < suits.length; i++) {
     for (let x = 0; x < values.length; x++) {
       let card = { Value: values[x], Suit: suits[i] };
-      deck.push(card);
+      unshuffled.push(card);
+      shuffledDeck = [...shuffle(unshuffled)];
     }
   }
-
-  return deck;
 }
+
+getNewDeck(values);
+console.log(shuffledDeck);
+console.log(shuffledDeck.length);
 
 // Function to shuffle cards
 function shuffle(deck) {
@@ -65,6 +65,9 @@ function handleDealer(event) {
   const dealer = "dealer";
   const player = "player";
 
+  if (shuffledDeck.length < 4) {
+    getNewDeck(values);
+  }
   let firstPlayerCard = shuffledDeck.shift();
   let secondPlayerCard = shuffledDeck.shift();
   let firstDealerCard = shuffledDeck.shift();
@@ -114,6 +117,8 @@ function handleDealer(event) {
 
   createHoldButton();
   createPlayerHitMeBtn();
+
+  console.log(shuffledDeck.length);
 }
 
 function dealNewPlayerCard(event) {
@@ -121,6 +126,9 @@ function dealNewPlayerCard(event) {
 
   const player = "player";
 
+  if (shuffledDeck.length === 0) {
+    getNewDeck(values);
+  }
   let nextPlayerCard = shuffledDeck.shift();
   let nextPlayerCardValue = getFaceCardValue(nextPlayerCard.Value);
 
@@ -141,6 +149,8 @@ function dealNewPlayerCard(event) {
     dealersHandTotal,
     dealerAces
   );
+
+  console.log(shuffledDeck.length, "Cards left");
 
   checkForWinner(adjustedPlayersHandTotal, player);
 
@@ -177,6 +187,11 @@ function playerHold() {
     playersAces
   );
 
+  if (shuffledDeck.length === 0) {
+    getNewDeck(values);
+  }
+  console.log(shuffledDeck.length);
+
   dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
     return playerHold();
@@ -188,6 +203,10 @@ function playerHold() {
 function dealNewDealerCard() {
   const dealer = "dealer";
   const player = "player";
+
+  if (shuffledDeck.length === 0) {
+    getNewDeck(values);
+  }
   let nextDealerCard = shuffledDeck.shift();
   let nextDealerCardValue = getFaceCardValue(nextDealerCard.Value);
 
@@ -209,6 +228,9 @@ function dealNewDealerCard() {
     playersHandTotal,
     playersAces
   );
+
+  console.log(shuffledDeck.length);
+
   checkForWinner(adjustedDealersHandTotal, dealer);
   checkForWinner(adjustedPlayersHandTotal, player);
 
@@ -237,7 +259,9 @@ function handleReset() {
   for (let i = 0; i < el.length; i++) {
     el[i].remove();
   }
-
+  if (shuffledDeck.length === 0) {
+    getNewDeck(values);
+  }
   playersHand.length = 0;
   dealersHand.length = 0;
 }

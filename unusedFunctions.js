@@ -9,8 +9,6 @@ function createDeck(arr) {
   return _.flattenDeep(cards);
 }
 
-// This function will be to replace the repition in the handleDealer function once I can figure out how to implement it
-
 function firstHand(shuffledDeck) {
   for (let i = 0; i < 2; i++) {
     let hand = [];

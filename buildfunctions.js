@@ -116,6 +116,7 @@ function createPlayAgainBtn(HandTotal) {
     document.body.append(playAgainBtn);
     let holdButton = document.querySelector(".hold");
     holdButton.remove();
+    console.log(shuffledDeck.length);
   }
 }
 
@@ -127,7 +128,6 @@ function createPlayAgainBtnDealer() {
   document.body.append(playAgainBtn);
   let holdButton = document.querySelector(".hold");
   holdButton.remove();
-  console.log("createPlayAgainBtn clicked");
 }
 
 function dealer(dealersHandTotal, playersHandTotal) {
@@ -196,7 +196,7 @@ adjustHandTotalForAces = (handTotal, numberOfAces) => {
     return handTotal - 10;
   } else if (numberOfAces + playersHand.length === 5 && handTotal > 31) {
     return handTotal - 20;
-  } else if (numberOfAces + playersHand.length === 5 && handTotal > 21) {
+  } else if (numberOfAces === 2 && handTotal > 21) {
     return handTotal - 10;
   } else if (numberOfAces + playersHand.length === 6 && handTotal < 32) {
     return handTotal - 10;
