@@ -195,6 +195,7 @@ adjustHandTotalForAces = (handTotal, numberOfAces) => {
   } else if (numberOfAces === 3 && handTotal > 10) {
     return handTotal - 30;
   } else return handTotal;
+  // Try moving else if statement at line 189 down and the next else if statement up to fix logic bug.
 };
 
 function checkForWinnerMessege(

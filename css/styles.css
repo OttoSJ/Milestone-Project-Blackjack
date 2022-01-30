@@ -138,12 +138,13 @@ body {
   width: 15rem;
   font-size: 150%;
   background-color: rgb(181, 184, 184);
-  border: 3px solid black;
+  /* border: 3px solid black; */
   margin-top: -0.7rem;
 }
 
 .winning-percentage-messege {
   position: relative;
+  text-align: center;
   margin-bottom: -1rem;
 }
 
@@ -182,6 +183,19 @@ body {
   }
   .player-card-container {
     margin-bottom: 20px;
+  }
+
+  .winning-percentage-messege-container {
+    justify-content: center;
+    align-items: center;
+    right: -16rem;
+    bottom: 23rem;
+    height: 7rem;
+    width: 7rem;
+    font-size: 125%;
+    background-color: transparent;
+    border: none;
+    color: rgb(181, 184, 184);
   }
 }
 
@@ -228,7 +242,7 @@ body {
     justify-content: space-between;
     align-items: center;
     right: 2rem;
-    bottom: 19rem;
+    bottom: 21.9rem;
   }
   .messeges {
     font-size: 100%;
@@ -245,5 +259,33 @@ body {
     color: rgb(181, 184, 184);
     width: 3rem;
     text-align: center;
+  }
+
+  .winning-percentage-messege-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    left: 15rem;
+    bottom: 22.5rem;
+    height: 5rem;
+    width: 15rem;
+    font-size: 125%;
+    background-color: transparent;
+    /* border: 3px solid black; */
+    margin-top: -0.7rem;
+  }
+  .winning-percentage-messege {
+    text-align: center;
+    width: 6rem;
+
+    margin-bottom: -1rem;
+    font-size: 60%;
+    color: rgb(181, 184, 184);
+  }
+  .winning-percentage-number {
+    justify-content: flex-end;
+    align-items: center;
+    color: rgb(181, 184, 184);
+    font-size: 80%;
   }
 }
