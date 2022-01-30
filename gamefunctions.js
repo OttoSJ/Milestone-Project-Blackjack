@@ -159,7 +159,7 @@ function dealNewPlayerCard(event) {
     let messege = document.querySelectorAll(".messeges")[0];
     messege.textContent = "Dealer Wins!";
     console.log(numberOfGamesPlayed, "Games Played");
-    getWinningPercentage();
+    // getWinningPercentage();
   }
 }
 
@@ -183,7 +183,7 @@ function playerHold() {
     playersAces
   );
 
-  getWinningPercentage();
+  //   getWinningPercentage();
   console.log(numberOfGamesPlayed, "Games Played");
 
   if (shuffledDeck.length === 0) {
@@ -192,7 +192,7 @@ function playerHold() {
 
   dealer(adjustedDealersHandTotal, adjustedPlayersHandTotal);
   if (adjustedDealersHandTotal < adjustedPlayersHandTotal) {
-    getWinningPercentage();
+    // getWinningPercentage();
     return playerHold();
   }
 
