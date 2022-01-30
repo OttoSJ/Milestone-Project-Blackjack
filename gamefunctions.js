@@ -268,6 +268,6 @@ function handleReset() {
 // - Buttons to add amount to bet
 // - Add vitual wallet to track players money total
 // - Add set dollar amount the player starts with
-// -
+// - Arrange percentage container in mobile (short hand Win %k .67)
 
 // Need to add a condition the the handleReset function that checks for to see if the Play Again button is present so that when the resest button is pressed I don't get an error. The reset button should remove all buttons and add the deal button back to the sceen. It should also reset the running game stats back to zero.
