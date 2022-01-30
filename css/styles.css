@@ -157,6 +157,7 @@ body {
   .messeges-container {
     position: relative;
     right: 2rem;
+    bottom: 2rem;
   }
 
   .reset-game {
@@ -189,7 +190,7 @@ body {
     justify-content: center;
     align-items: center;
     right: -16rem;
-    bottom: 23rem;
+    bottom: 25rem;
     height: 7rem;
     width: 7rem;
     font-size: 125%;
@@ -225,13 +226,14 @@ body {
 
   .deal-card {
     position: absolute;
-    bottom: rem;
+    bottom: 8rem;
     left: 35rem;
   }
 
   .play-again-btn,
   .hold {
     position: absolute;
+    bottom: 10rem;
     left: 35.5rem;
   }
 
