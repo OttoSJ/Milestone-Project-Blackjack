@@ -225,7 +225,7 @@ body {
 
   .deal-card {
     position: absolute;
-    bottom: 7rem;
+    bottom: rem;
     left: 35rem;
   }
 
@@ -242,7 +242,7 @@ body {
     justify-content: space-between;
     align-items: center;
     right: 2rem;
-    bottom: 21.9rem;
+    bottom: 21.3rem;
   }
   .messeges {
     font-size: 100%;
@@ -266,7 +266,7 @@ body {
     justify-content: center;
     align-items: center;
     left: 15rem;
-    bottom: 22.5rem;
+    bottom: 22rem;
     height: 5rem;
     width: 15rem;
     font-size: 125%;
