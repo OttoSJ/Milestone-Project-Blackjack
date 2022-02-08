@@ -142,15 +142,6 @@ function getFaceCardValue(element) {
   } else return Number(element);
 }
 
-// Function checks for winner. CHANGE NAME TO CHECK FOR WINNER
-// function checkForWinner(contestentsHand, contestant) {
-//   if (contestentsHand === 21) {
-//     return console.log(contestentsHand, contestant, `Has Blackjack!`);
-//   } else if (contestentsHand > 21) {
-//     return console.log(contestentsHand, contestant, `Loses`);
-//   } else console.log(contestentsHand, contestant);
-// }
-
 function displayScore(dealersHand, playersHand) {
   let dealerMessege = document.querySelectorAll(".dealer-score-messege")[0];
   let playerMessege = document.querySelectorAll(".player-score-messege")[0];
